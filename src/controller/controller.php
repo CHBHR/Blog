@@ -1,7 +1,7 @@
 <?php
     require('../model/model.php');
 
-    function listPost()
+    function listPosts()
     {
         $post = getPosts();
 

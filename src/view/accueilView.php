@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +14,6 @@
             <ul>
                 <li>
                     <a href="#">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
                         Me
                     </a>
                 </li>
@@ -29,7 +24,12 @@
                 </li>
                 <li>
                     <a href="#">
-                        Articles
+                        Posts
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        sign-in
                     </a>
                 </li>
             </ul>
@@ -59,6 +59,17 @@
                 <br>
                 <a href="">Excited?</a>
             </p>
+        </div>
+
+        <div>
+            <h2>
+                Latest articles
+            </h2>
+            <div>
+                <p>
+                    Coming soon
+                </p>
+            </div>
         </div>
 
     </main>

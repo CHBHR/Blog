@@ -1,6 +1,12 @@
 <?php
 
+    //autoload
+
+    require '../vendor/autoload.php';
+
     require 'controller/controller.php';
+
+    require 'model/db.php';
 
     // if(isset($_GET['action'])) {
     //     if($_GET['action'] == 'listPost') {

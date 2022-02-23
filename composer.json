@@ -1,3 +1,8 @@
 {
-    
+    "require": {
+        "twig/twig":"^3.0",
+        "php": ">=7.2.5",
+        "symfony/polfill-ctype": "^1.8",
+        "symfony/polyfill-mbstring": "^1.3"
+    }
 }

@@ -9,7 +9,7 @@
 
     <body>
         
-        <div id="articleBody">
+        <!-- <div id="articleBody">
 
             <div id="articleHeader">
 
@@ -89,7 +89,7 @@
                 <input type="submit">
             </form>
 
-        </div>
+        </div> -->
 
     </body>
 

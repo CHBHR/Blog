@@ -25,7 +25,7 @@
 <body>
 
     <header>
-        <h1>"Le Petit blog de Christopher"</h1>
+        <h1>"Moi c'est Chris et ça c'est mon blog"</h1>
         <nav id="header_nav">
             <ul>
                 <li>
@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        Mon CV
+                        Skills
                     </a>
                 </li>
                 <li>

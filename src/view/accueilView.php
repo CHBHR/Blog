@@ -1,39 +1,40 @@
-<?php 
-    echo 'this is the view <br>';
-?>
 
     <main>
 
         <div>
             <h2>
-                Me
+                "À propos de moi"
             </h2>
             <p>
-                My name is Christopher Rey and I am on my way to become a Php wizard :)
+                Mon nom est Christopher Rey, j'ai 31 ans et je suis en reconversion dans le monde du développement web, spécialiste back end.
+                Je travail dur pour réapprendre un métier, tant sur le plan technique que sur les méthodologies, architectures et 'best practices' qui le compose. Devenir déveoppeur est un rêve d'enfant et je me suis lancé il y a quelques années. Bienvenus sur mon blog :)
                 <br>
-                This is my blog. It ain't much right now, but it will soon become quite the project. Just wait until I set up some php and css...
+                Ici vous pourrez trouver des informations sur moi, mon CV, des articles écris ou partagé, des liens vers mes réseaux sociaux et d'éventuels projets que j'updaterai régulièrement.
                 <br>
+                N'hésitez pas à faire un tours et contactez moi si mon profil vous interesse ;)
             </p>
         </div>
 
         <div>
             <h2>
-                My CV
+                "Mes skills, Mon CV"
             </h2>
             <p>
-                Soon, here, you will be able to consult and download my CV as a beautifull PDF.
+                Liste de mes skills et téléchargement du CV bientot disponible
                 <br>
-                <a href="">Excited?</a>
+                <a href="">Hâte?</a>
             </p>
         </div>
 
         <div>
             <h2>
-                Latest articles
+                "Articles"
             </h2>
             <div>
                 <p>
-                    Coming soon
+                    On est quand même sur un blog non? :)
+                    <br>
+                    Ici vous trouverez la liste des derniers articles sur mon blog avec la possibilité de mettre des comentaires! Rien que ça.
                 </p>
             </div>
         </div>

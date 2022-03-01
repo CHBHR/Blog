@@ -2,9 +2,10 @@
         <main>
 
             <h2>Les Articles</h2>
-            
-            <div>
-                <?php
+
+            <div id="listeArticles">
+
+            <?php
 
                 include_once '../model/model.php';
                 $db = dbConnect();
@@ -20,21 +21,9 @@
                     <p><?php echo $article['chapo']; ?></p>
                     <p><?php echo $article['contenu']; ?></p>
                     
-                    <?php
+                <?php
                 }
-                ?>
-
-            </div>
-
-            <div id="listeArticles">
-
-                <div class="artcileApercu">
-                    <h3>Titre de l'article 1</h3>
-                    <p>chapo: message de résumé du contenu</p>
-                    <p>Autheur</p>
-                    <p>Date de publication</p>
-                    <p>Nombre de commentaires</p>
-                </div>
+            ?>
 
             </div>
 

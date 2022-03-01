@@ -12,3 +12,16 @@ function dbConnect()
         die('Erreur : '.$e->getMessage());
     }
 }
+
+function mySqlyConnect()
+{
+    try
+    {
+        $link = mysqli_connect("localhost","root","","blog_database");
+        return $link;
+    }
+    catch(Exception $e)
+    {
+        die('Erreur : '.$e->getMessage());
+    }
+}

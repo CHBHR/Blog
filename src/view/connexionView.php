@@ -12,7 +12,7 @@
         
         <div id="inscriptionBody">
             <h2>Inscription</h2>
-            <form method="post" action="../controller/connexionController.php">
+            <form method="post" action="../controller/Register.php">
                 
                 <label for="nomUtilisateur">Nom d'utilisateur</label><br>
                 <input type="text" id="nomUtilisateur" name="nomUtilisateur"><br>

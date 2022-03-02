@@ -48,6 +48,7 @@
                         Connexion/Inscription
                     </a>
                 </li>
+                
             </ul>
         </nav>
     </header>

@@ -2,11 +2,10 @@
     session_start();
 
     include_once(dirname(__FILE__) . "/../config.php");
-    //require(dirname(__FILE__) . "/../model/model.php");
     
     include(dirname(__FILE__) . "/../view/headerView.php");
     include(dirname(__FILE__) . "/../view/connexionView.php");
-    include(dirname(__FILE__) . "/../view/footerView.php");
+
 
     if (isset($_POST['formInscription']))
     {
@@ -152,3 +151,6 @@
             return true;
         }
     }
+
+
+    include(dirname(__FILE__) . "/../view/footerView.php");

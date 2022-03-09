@@ -43,11 +43,28 @@
                         Articles
                     </a>
                 </li>
-                <li>
-                    <a href="/src/controller/connexionController.php">
+
+                <?php
+                if(!isset($_SESSION['nomUtilisateur']))
+                {
+                    echo " <li>
+                    <a href='/src/controller/connexionController.php'>
                         Connexion/Inscription
                     </a>
-                </li>
+                    </li>";
+                } else {
+                    echo "
+                    <li>
+                       Bonjour " . $_SESSION['nomUtilisateur'] . "
+                    </li>
+                    <li>
+                        <a href='/src/Logout.php'>
+                            Deconnexion
+                        </a>
+                    </li>";
+                }
+                ?>
+                
             </ul>
         </nav>
     </header>

@@ -9,7 +9,7 @@
 
     if (isset($_POST['formInscription']))
     {
-        $con = config::connect();
+        $con = Config::connect();
         $nomUtilisateur = sanitizeString($_POST['nomUtilisateur']);
         $email = sanitizeString($_POST['email']);
         $mdp = sanitizePassword($_POST['mdp']);
@@ -91,6 +91,8 @@
         //check combiens de 'rows' sont retournés
         if($query->rowCount() == 1)
         {
+            $dataUtilisateur = $query->fetch();
+            $_SESSION['role'] = $dataUtilisateur['role'];
             return true;
         } else {
             unset($query);

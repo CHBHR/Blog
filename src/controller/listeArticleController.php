@@ -7,10 +7,11 @@
     include(dirname(__FILE__) . "/../view/headerView.php");
     include(dirname(__FILE__) . "/../view/listeArticlesView.php");
 
+    $con = Config::connect();
+
 
     if (isset($_POST['formCreationArticle']))
     {
-        $con = Config::connect();
         
         $titre = $_POST['titre'];
         $chapo = $_POST['chapo'];
@@ -19,19 +20,19 @@
         if(insertDetails($con, $titre, $chapo, $contenu))
         {
             echo "Article sauvegardé !";
-            header("Location: controller/listeArtcileController.php");
+            //header("Location: controller/listeArtcileController.php");
         }
 
     }
 
     function insertDetails($con, $titre, $chapo, $contenu)
     {
-        $auteurNom = $_SESSION['nomUtilisateur'];
+        $nomUtilisateur = $_SESSION['nomUtilisateur'];
 
-        $auteurId =getAuteurId($con, $auteurNom);
+        $auteurId = getAuteurId($nomUtilisateur);
 
         $query = $con->prepare("
-            INSERT INTO article (titre,chapo,contenu,auteurId)
+            INSERT INTO article (titre,chapo,contenu,auteur_id)
             VALUES(:titre,:chapo,:contenu,:auteurId)
         ");
 
@@ -43,10 +44,12 @@
         return $query->execute();
     }
 
-    function getAuteurId($con, $nomUtilisateur)
+    function getAuteurId($nomUtilisateur)
     {
+        $con = Config::connect();
+
         $query = $con->prepare("
-            SELECT * FROM utilisateur WHERE nom_utilisateur=:nomUtilisateur
+            SELECT id FROM utilisateur WHERE nom_utilisateur=:nomUtilisateur
         ");
 
         $query->bindParam(":nomUtilisateur", $nomUtilisateur);
@@ -58,15 +61,34 @@
         return $dataUtilisateur['id'];
     }
 
+    function getAuteurName($auteurId)
+    {
+        $con = Config::connect();
+        
+        $query = $con->prepare("
+            SELECT nom_utilisateur FROM utilisateur WHERE id=:auteurId
+        ");
+
+        $query->bindParam(":auteurId", $auteurId);
+
+        $query->execute();
+
+        $dataUtilisateur = $query->fetch();
+
+        return $dataUtilisateur['nom_utilisateur'];
+    }
+
     function getArticle()
     {
         $con = Config::connect();
+
         $query = $con->prepare("
             SELECT * FROM article
         ");
+
         $query->execute();
 
-        $dataArticle = $query->fetch();
+        $dataArticle = $query->fetchAll();
 
         return $dataArticle;
     }

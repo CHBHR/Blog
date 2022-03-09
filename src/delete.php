@@ -6,6 +6,7 @@
 
     $con = config::connect();
 
+    //Delete Self
     $nomUtilisateur = $_SESSION['nomUtilisateur'];
 
     $query = $con->prepare("
@@ -18,3 +19,5 @@
 
     //FIX ME
     header("Location: ");
+
+    //Implement Admin panel delete user

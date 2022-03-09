@@ -48,7 +48,7 @@
                 if(!isset($_SESSION['nomUtilisateur']))
                 {
                     echo " <li>
-                    <a href'/src/controller/connexionController.php'>
+                    <a href='/src/controller/connexionController.php'>
                         Connexion/Inscription
                     </a>
                     </li>";

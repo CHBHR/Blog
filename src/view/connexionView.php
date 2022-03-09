@@ -24,5 +24,8 @@
                 <label for="mdpConfirmation">Confirmez le mot de passe</label><br>
                 <input type="password" id="mdpConfirmation" name="mdpConfirmation" required><br>
                 <input type="submit" value="Inscription" name="formInscription">
+                <?php
+                    echo $errors ="";
+                ?>
             </form>
         </div>

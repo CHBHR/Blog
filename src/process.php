@@ -10,10 +10,30 @@
         $nomUtilisateur = sanitizeString($_POST['nomUtilisateur']);
         $email = sanitizeString($_POST['email']);
         $mdp = sanitizePassword($_POST['mdp']);
-        //$mdpConf = $_POST['mdpConfirmation'];
+        $mdpConf = sanitizePassword($_POST['mdpConfirmation']);
 
         if($nomUtilisateur == "" || $email == "" || $mdp == "")
         {
+            echo "Il faut remplir les champs";
+            return;
+        }
+
+        if($mdp != $mdpConf)
+        {
+            $error = "nop";
+            echo "Les mots de passes ne sont pas les mêmes";
+            return;
+        }
+
+        if(!checkUserNameExist($con, $nomUtilisateur))
+        {
+            echo "Ce nom d'utilisateur est déjà pris";
+            return;
+        }
+
+        if(!checkEmailExist($con, $email))
+        {
+            echo "Cet email est déjà utilisé";
             return;
         }
 
@@ -31,7 +51,6 @@
 
         $nomUtilisateur = sanitizeString($_POST['nomUtilisateur']);
         $mdp = sanitizePassword($_POST['mdp']);
-        //$mdpConf = $_POST['mdpConfirmation'];
 
         if(checkLogin($con, $nomUtilisateur, $mdp))
         {
@@ -63,7 +82,6 @@
         ");
 
         $query->bindParam(":nomUtilisateur", $nomUtilisateur);
-        $query->bindParam(":mdp", $mdp);
 
         $query->execute();
 
@@ -90,4 +108,40 @@
         $string = md5($string);
 
         return $string;
+    }
+
+    function checkUserNameExist($con, $nomUtilisateur)
+    {
+        $query = $con->prepare("
+            SELECT * FROM utilisateur WHERE nom_utilisateur=:nomUtilisateur
+        ");
+
+        $query->bindParam(":nomUtilisateur", $nomUtilisateur);
+
+        $query->execute();
+
+        if($query->rowCount() >= 1)
+        {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function checkEmailExist($con, $email)
+    {
+        $query = $con->prepare("
+            SELECT * FROM utilisateur WHERE email=:email
+        ");
+
+        $query->bindParam(":email", $email);
+
+        $query->execute();
+
+        if($query->rowCount() >= 1)
+        {
+            return false;
+        } else {
+            return true;
+        }
     }

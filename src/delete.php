@@ -18,6 +18,6 @@
     $query->execute();
 
     //FIX ME
-    header("Location: ");
+    //header("Location: ");
 
     //Implement Admin panel delete user

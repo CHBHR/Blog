@@ -19,9 +19,6 @@
 
             try{
                 $pdo = new \PDO($dsn, $user, $pass, $options);
-
-                //TO REMOVE
-                echo 'Databse connexion established';
             } catch (\PDOException $e){
                 throw new \PDOException($e->getMessage(), $e->getCode());
             }

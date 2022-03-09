@@ -2,7 +2,7 @@
     session_start();
 
     include_once("config.php");
-
+    include("Controller/connexionController.php");
 
     if (isset($_POST['formInscription']))
     {
@@ -20,7 +20,6 @@
 
         if($mdp != $mdpConf)
         {
-            $error = "nop";
             echo "Les mots de passes ne sont pas les mêmes";
             return;
         }
@@ -55,7 +54,7 @@
         if(checkLogin($con, $nomUtilisateur, $mdp))
         {
             $_SESSION['nomUtilisateur'] = $nomUtilisateur;
-            header("Location: controller/Controller.php");
+            header("Location:controller/Controller.php");
         } else {
             echo "Le nom d'utilisateur ou le mot de passe est incorrect";
         }
@@ -82,6 +81,7 @@
         ");
 
         $query->bindParam(":nomUtilisateur", $nomUtilisateur);
+        $query->bindParam(":mdp", $mdp);
 
         $query->execute();
 
@@ -90,7 +90,9 @@
         {
             return true;
         } else {
+            unset($query);
             return false;
+            
         }
     }
 
@@ -126,6 +128,7 @@
         } else {
             return true;
         }
+
     }
 
     function checkEmailExist($con, $email)

@@ -53,10 +53,14 @@
                     </a>
                     </li>";
                 } else {
-                    echo " <li>
-                    <a href='/src/Logout.php'>
-                        Deconnexion
-                    </a>
+                    echo "
+                    <li>
+                       Bonjour " . $_SESSION['nomUtilisateur'] . "
+                    </li>
+                    <li>
+                        <a href='/src/Logout.php'>
+                            Deconnexion
+                        </a>
                     </li>";
                 }
                 ?>

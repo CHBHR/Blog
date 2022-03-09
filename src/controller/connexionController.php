@@ -1,68 +1,154 @@
 <?php
-    
-    require(dirname(__FILE__) . "/../model/model.php");
+    session_start();
+
+    include_once(dirname(__FILE__) . "/../config.php");
+    //require(dirname(__FILE__) . "/../model/model.php");
     
     include(dirname(__FILE__) . "/../view/headerView.php");
     include(dirname(__FILE__) . "/../view/connexionView.php");
     include(dirname(__FILE__) . "/../view/footerView.php");
 
-    $userName = "";
-    $email = "";
-    $errors = [];
-    $db = mySqlyConnect();
+    if (isset($_POST['formInscription']))
+    {
+        $con = config::connect();
+        $nomUtilisateur = sanitizeString($_POST['nomUtilisateur']);
+        $email = sanitizeString($_POST['email']);
+        $mdp = sanitizePassword($_POST['mdp']);
+        $mdpConf = sanitizePassword($_POST['mdpConfirmation']);
 
-    if (isset($_POST['formInscription'])) {
-        //récupere les input du formulaire
-        $userName = mysqli_real_escape_string($db, $_POST['userName']);
-        $email = mysqli_real_escape_string($db, $_POST['email']);
-        $password = mysqli_real_escape_string($db, $_POST['password']);
-        $passConfirmation = mysqli_real_escape_string($db, $_POST['passConfirmation']);
-
-        // check si le formulaire est bien remplis
-        // by adding (array_push()) corresponding error unto $errors array
-        if (empty($userName)) { array_push($errors, "Username is required"); }
-        if (empty($email)) { array_push($errors, "Email is required"); }
-        if (empty($password)) { array_push($errors, "Password is required"); }
-        if ($password != $passConfirmation) {
-            array_push($errors, "The two passwords do not match");
+        if($nomUtilisateur == "" || $email == "" || $mdp == "")
+        {
+            echo "Il faut remplir les champs";
+            return;
         }
 
-        // check si il existe déjà un utilisateur avec le même username
-        $userCheckQuery = "SELECT * FROM 'user' WHERE 'user_name' = '$userName' OR email = '$email' LIMIT 1";
-        $userCheckDoublon = mysqli_query($db, $userCheckQuery);
-        $utilisateur = mysqli_fetch_assoc($userCheckDoublon);
-
-        //si l'utilisateur existe
-        if ($utilisateur) { 
-            if ($utilisateur['user_name'] === $userName) {
-                // array_push($errors, "Ce nom utilisateur existe déjà");
-                echo "Ce nom utilisateur existe déjà";
-
-            }
-            if ($utilisateur['email'] === $email) {
-                array_push($errors, "Cet email est déjà utilisé");
-                echo "Cet email est déjà utilisé";
-            }
+        if($mdp != $mdpConf)
+        {
+            echo "Les mots de passes ne sont pas les mêmes";
+            return;
         }
 
-        //enregistre l'utilisateur si il n'y a aucune erreur
-        if (count($errors) == 0) {
-            $motDePasse = md5($pass);
-
-            $query = "INSERT INTO 'user' ('user_name', 'email', 'password' , 'role') VALUES ('$userName', '$email', '$password', 'utilisateur')";
-
-            var_dump($query);
-
-            mysqli_query($db, $query);
-
-            $_SESSION['user_name'] = $nomUtilisateur;
-            $_SESSION['role'] = 'utilisateur';
-            $_SESSION['success'] = "Vous êtes maintenant connecté";
-
-            echo "normalement c'est bon";
-            var_dump($_SESSION);
-
-            //header('location: controller.php');
+        if(!checkUserNameExist($con, $nomUtilisateur))
+        {
+            echo "Ce nom d'utilisateur est déjà pris";
+            return;
         }
 
+        if(!checkEmailExist($con, $email))
+        {
+            echo "Cet email est déjà utilisé";
+            return;
+        }
+
+        if(insertDetails($con, $nomUtilisateur, $email, $mdp))
+        {
+            echo "details inserted successfully";
+            $_SESSION['nomUtilisateur'] = $nomUtilisateur;
+            header("Location: controller/Controller.php");
+        }
+    }
+
+    if (isset($_POST['formConnection']))
+    {
+        $con = config::connect();
+
+        $nomUtilisateur = sanitizeString($_POST['nomUtilisateur']);
+        $mdp = sanitizePassword($_POST['mdp']);
+
+        if(checkLogin($con, $nomUtilisateur, $mdp))
+        {
+            $_SESSION['nomUtilisateur'] = $nomUtilisateur;
+            header("Location:controller/Controller.php");
+        } else {
+            echo "Le nom d'utilisateur ou le mot de passe est incorrect";
+        }
+    }
+
+    function insertDetails($con, $nomUtilisateur, $email, $mdp)
+    {
+        $query = $con->prepare("
+            INSERT INTO utilisateur (nom_utilisateur,email,mdp)
+            VALUES(:nomUtilisateur,:email,:mdp)
+        ");
+
+        $query->bindParam(":nomUtilisateur", $nomUtilisateur);
+        $query->bindParam(":email", $email);
+        $query->bindParam(":mdp", $mdp);
+
+        return $query->execute();
+    }
+
+    function checkLogin($con, $nomUtilisateur, $mdp)
+    {
+        $query = $con->prepare("
+            SELECT * FROM utilisateur WHERE nom_utilisateur=:nomUtilisateur AND mdp=:mdp
+        ");
+
+        $query->bindParam(":nomUtilisateur", $nomUtilisateur);
+        $query->bindParam(":mdp", $mdp);
+
+        $query->execute();
+
+        //check combiens de 'rows' sont retournés
+        if($query->rowCount() == 1)
+        {
+            return true;
+        } else {
+            unset($query);
+            return false;
+            
+        }
+    }
+
+    function sanitizeString($string)
+    {
+        $string = strip_tags($string);
+
+        $string = str_replace(" ","",$string);
+
+        return $string;
+    }
+
+    function sanitizePassword($string)
+    {
+        $string = md5($string);
+
+        return $string;
+    }
+
+    function checkUserNameExist($con, $nomUtilisateur)
+    {
+        $query = $con->prepare("
+            SELECT * FROM utilisateur WHERE nom_utilisateur=:nomUtilisateur
+        ");
+
+        $query->bindParam(":nomUtilisateur", $nomUtilisateur);
+
+        $query->execute();
+
+        if($query->rowCount() >= 1)
+        {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    function checkEmailExist($con, $email)
+    {
+        $query = $con->prepare("
+            SELECT * FROM utilisateur WHERE email=:email
+        ");
+
+        $query->bindParam(":email", $email);
+
+        $query->execute();
+
+        if($query->rowCount() >= 1)
+        {
+            return false;
+        } else {
+            return true;
+        }
     }

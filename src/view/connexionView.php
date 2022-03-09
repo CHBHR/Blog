@@ -1,7 +1,7 @@
    
         <div id="connexionBody">
             <h2>Connexion</h2>
-            <form method="post" action="../process.php">
+            <form method="post" action="../controller/connexionController.php">
 
             <label for="nomUtilisateur">Nom d'utilisateur</label><br>
                 <input type="text" id="nomUtilisateur" name="nomUtilisateur" required><br>
@@ -13,7 +13,7 @@
         
         <div id="inscriptionBody">
             <h2>Inscription</h2>
-            <form method="post" action="../process.php">
+            <form method="post" action="../controller/connexionController.php">
                 
                 <label for="nomUtilisateur">Nom d'utilisateur</label><br>
                 <input type="text" id="nomUtilisateur" name="nomUtilisateur" required><br>

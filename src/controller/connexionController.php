@@ -2,15 +2,14 @@
     session_start();
 
     include_once(dirname(__FILE__) . "/../config.php");
-    //require(dirname(__FILE__) . "/../model/model.php");
     
     include(dirname(__FILE__) . "/../view/headerView.php");
     include(dirname(__FILE__) . "/../view/connexionView.php");
-    include(dirname(__FILE__) . "/../view/footerView.php");
+
 
     if (isset($_POST['formInscription']))
     {
-        $con = config::connect();
+        $con = Config::connect();
         $nomUtilisateur = sanitizeString($_POST['nomUtilisateur']);
         $email = sanitizeString($_POST['email']);
         $mdp = sanitizePassword($_POST['mdp']);
@@ -92,6 +91,8 @@
         //check combiens de 'rows' sont retournés
         if($query->rowCount() == 1)
         {
+            $dataUtilisateur = $query->fetch();
+            $_SESSION['role'] = $dataUtilisateur['role'];
             return true;
         } else {
             unset($query);
@@ -152,3 +153,6 @@
             return true;
         }
     }
+
+
+    include(dirname(__FILE__) . "/../view/footerView.php");

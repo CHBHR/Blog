@@ -78,7 +78,7 @@
         return $dataUtilisateur['nom_utilisateur'];
     }
 
-    function getArticle()
+    function getAllArticle()
     {
         $con = Config::connect();
 

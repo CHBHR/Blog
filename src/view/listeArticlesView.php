@@ -5,7 +5,7 @@
         <div id="listeArticles">  
         
         <?php
-        $dataArticle = getArticle();
+        $dataArticle = getAllArticle();
         //var_dump($dataArticle);
         if(count($dataArticle) > 0):?>
             
@@ -13,7 +13,7 @@
                 
                     <h3><?php echo $article['titre']; ?></h3>
                     <p><?php echo $article['chapo']; ?></p>
-                    <p><?php echo $article['contenu']; ?></p>
+                    <a href="../controller/articleController.php?id=<?php echo $article['id'] ?>" >Lire l'article</a>
                     <p><?php echo(getAuteurName($article['auteur_id'])); ?></p>
                     
         <?php } else:

@@ -12,11 +12,18 @@ class ControllerPost
         if (isset($url) && count($url) < 1) {
             throw new \Exception(("Page introuvable"));
         }
+        elseif (isset($_GET['create'])) {
+            $this->create();
+        }
+        elseif (isset($_GET['status']) && isset($_GET['status']) == "new") {
+            $this->store();
+        }
         else {
             $this->article();
         }
     }
 
+    //affiche un article
     private function article()
     {
         if (isset($_GET['id'])) {
@@ -27,5 +34,26 @@ class ControllerPost
         } else {
             echo "aucun article trouvé";
         }
+    }
+
+    //affiche le formulaire de création d'un article
+    private function create()
+    {
+        if (isset($_GET['create'])) {
+            $this->_view = new View('CreatePost');
+            $this->_view->generatePage();
+        } else {
+            echo "le formulaire n'a pas été trouvé";
+        }
+    }
+
+    //insérer un article en base de donnée
+    private function store()
+    {
+        $this->_articleManager = new ArticleManager;
+        $article = $this->_articleManager->createArticle();
+        $articles = $this->_articleManager->getArticles();
+        $this->_view = new View('accueil');
+        $this->_view->generate(array('article' => $article));
     }
 }

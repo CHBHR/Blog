@@ -13,7 +13,6 @@ class Routeur
     public function routeReq(){
 
         try {
-
             //chargement automatique des classes du dossier model
             spl_autoload_register(function($class){
                 require_once('model/'.$class.'.php');
@@ -51,8 +50,9 @@ class Routeur
                 }
 
             } else {
-                require_once('controller/ControllerAccueil.php');
-                $this->ctrl = new ControllerAccueil($url);
+                // require_once('controller/ControllerAccueil.php');
+                // $this->ctrl = new ControllerAccueil($url);
+                echo "la page n'a pas été trouvée";
                 
             }
 

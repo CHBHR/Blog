@@ -1,6 +1,4 @@
 
-<main>
-
 <div>
     <h2>
         "À propos de moi"
@@ -25,35 +23,3 @@
         <a href="">Hâte?</a>
     </p>
 </div>
-
-<div>
-    <h2>
-        "Articles"
-    </h2>
-    
-    <div>
-    
-        <?php
-
-        foreach ($articles as $article): 
-            ?>
-
-            <div>
-                <h3>
-                    <a href="post&id=<?= $article->getId() ?>"><?= $article->getTitre() ?></a>
-                </h3>
-                <p>
-                    <?= $article->getChapo() ?>
-                </p>
-                <p>
-                    <?= date('d/m/Y',strtotime($article->getDateMAJ())) ?>
-                </p>
-            </div>
-
-
-        <?php endforeach ?>
-
-        </div>
-</div>
-
-</main>

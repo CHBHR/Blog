@@ -17,4 +17,27 @@ class ArticleManager extends Model
         return $this->getOne('article', 'Article', $id);
     }
 
+    //creer un article
+    public function createArticle()
+    {
+        return $this->addArticle('article', 'Article');
+    }
+
+    //supprime un article
+    public function deleteArticle($id)
+    {
+        try{
+            return $this->deleteOne('article', $id);
+        } catch (\Exception $e) {
+            $errorMsg = $e->getMessage();
+            echo "L'article n'a pas pu être supprimé";
+        }
+    }
+
+    //met l'article à jour
+    public function updateArticle($table, $titre, $chapo, $contenu, $id)
+    {
+        return $this->updateArticle('article', $titre, $chapo, $contenu, $id);
+    }
+
 }

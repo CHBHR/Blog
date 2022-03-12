@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once 'views/View.php';
 
 class ControllerAccueil
@@ -21,11 +23,8 @@ class ControllerAccueil
     {
         $this->_articleManager = new ArticleManager();
         $articles = $this->_articleManager->getArticles();
-        // require_once("views/viewHeader.php");
-        // require_once("views/viewAccueil.php");
-        // require_once("views/viewFooter.php");
-        $this->view = new View('accueil');
-        $this->view->generate(array('articles' => $articles));
+        $this->_view = new View('Accueil');
+        $this->_view->generate(array('articles' => $articles));
     }
 
 }

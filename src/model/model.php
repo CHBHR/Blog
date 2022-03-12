@@ -41,4 +41,18 @@ abstract class Model
         $requete->closeCursor();
     }
 
+    protected function getOne($table, $obj, $id)
+    {
+        $this->getBdd();
+        $dbObject = [];
+        $requete = self::$_bdd->prepare("SELECT * FROM ".$table." WHERE id = ?");
+        $requete->execute(array($id));
+        while ($data = $requete->fetch(PDO::FETCH_ASSOC)) {
+            $dbObject[] = new $obj($data);
+        }
+
+        return $dbObject;
+        $requete->closeCursor();
+    }
+
 }

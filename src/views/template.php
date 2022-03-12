@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Blog de CHBHR</title>
 
-    <link rel="stylesheet" href="/src/public/css/normalize.css">
+    <link rel="stylesheet" href="public/css/normalize.css">
 
     <!-- Importation des fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="/src/public/css/header.css">
+    
+    <link rel="stylesheet" href="public/css/header.css">
 
-    <link rel="stylesheet" href="/src/public/css/header.css">
+    <link rel="stylesheet" href="public/css/stylesheet.css">
 
-    <link rel="stylesheet" href="/src/public/css/stylesheet.css">
-
-    <link rel="stylesheet" href="/src/public/css/footer.css">
+    <link rel="stylesheet" href="public/css/footer.css">
     
 </head>
 <body>
@@ -29,12 +28,12 @@
         <nav id="header_nav">
             <ul>
                 <li>
-                    <a href="">
+                    <a href="index.php?accueil">
                         Accueil
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="">
                         Skills
                     </a>
                 </li>
@@ -48,7 +47,7 @@
                 if(!isset($_SESSION['nomUtilisateur']))
                 {
                     echo " <li>
-                    <a href='/src/controller/connexionController.php'>
+                    <a href='#'>
                         Connexion/Inscription
                     </a>
                     </li>";
@@ -58,7 +57,7 @@
                        Bonjour " . $_SESSION['nomUtilisateur'] . "
                     </li>
                     <li>
-                        <a href='/src/Logout.php'>
+                        <a href='#'>
                             Deconnexion
                         </a>
                     </li>";

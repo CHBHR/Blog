@@ -40,7 +40,7 @@
 
             <div>
                 <h3>
-                    <?= $article->getTitre() ?>
+                    <a href="post&id=<?= $article->getId() ?>"><?= $article->getTitre() ?></a>
                 </h3>
                 <p>
                     <?= $article->getChapo() ?>

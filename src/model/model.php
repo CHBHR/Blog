@@ -1,27 +1,58 @@
 <?php
 
-function dbConnect()
-{
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=blog_database;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
-}
+declare(strict_types=1);
 
-function mySqlyConnect()
+abstract class Model
 {
-    try
-    {
-        $link = mysqli_connect("localhost","root","","blog_database");
-        return $link;
+
+    private static $_bdd;
+
+    //connexion à la bdd
+
+    private static function setBdd(){
+        self::$_bdd = new PDO('mysql:host=localhost;dbname=blog_database;charset=utf8', 'root', '');
+
+        //constantes de PDO pour gerer les erreurs
+        self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
+
+    //connection par defaut
+    protected function getBdd(){
+        if (self::$_bdd == null) {
+            self::setBdd();
+            return self::$_bdd;
+        }
     }
+
+    //recuperation des elements en bdd
+    protected function getAll($table, $obj){
+        $this->getBdd();
+        $dbObjects = [];
+        $requete = self::$_bdd->prepare("SELECT * FROM ".$table." ORDER BY id desc");
+        $requete->execute();
+
+        //on cree la variable data pour contenir les donnees de la table cible
+        while ($data = $requete->fetch(PDO::FETCH_ASSOC)){
+            //dbObjects contiendra les données sous forme d'objet
+            $dbObjects[] = new $obj($data);
+        }
+
+        return $dbObjects;
+        $requete->closeCursor();
+    }
+
+    protected function getOne($table, $obj, $id)
+    {
+        $this->getBdd();
+        $dbObject = [];
+        $requete = self::$_bdd->prepare("SELECT * FROM ".$table." WHERE id = ?");
+        $requete->execute(array($id));
+        while ($data = $requete->fetch(PDO::FETCH_ASSOC)) {
+            $dbObject[] = new $obj($data);
+        }
+
+        return $dbObject;
+        $requete->closeCursor();
+    }
+
 }

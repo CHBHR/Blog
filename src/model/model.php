@@ -72,7 +72,7 @@ abstract class Model
         $query->closeCursor();
     }
 
-    protected function updateOne($table)
+    protected function updateOne($table,$id)
     {
         $this->getBdd();
         $query = self::$_bdd->prepare("UPDATE ".$table." SET titre=:titre, chapo=:chapo, contenu=:contenu WHERE id=:id");
@@ -80,7 +80,7 @@ abstract class Model
         $query->bindParam("chapo", $_POST['chapo']);
         $query->bindParam("contenu", $_POST['contenu']);
         // $query->bindParam("dateMAJ", date("d-m-Y"));
-        $query->bindParam("id", $_POST['id']);
+        $query->bindParam("id", $id);
         $query->execute();
         $query->closeCursor();
     }

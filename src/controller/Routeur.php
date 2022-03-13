@@ -17,6 +17,7 @@ class Routeur
             spl_autoload_register(function($class){
                 require_once('model/'.$class.'.php');
             });
+            var_dump(($_SERVER['REQUEST_URI']));
 
             //creation de la variable url
             $url = '';

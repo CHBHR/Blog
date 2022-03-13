@@ -4,18 +4,24 @@ declare(strict_types=1);
 
 class ControllerUpdate
 {
+    
     private $_articleManager;
     private $_view;
 
     public function __construct()
     {
-        if (isset($_POST['updateButton']) && isset($_GET['id'])) {
-            $this->updateForm($_GET['id']);
-        }else if (isset($_POST['formUpdateArticle'])) {
-            $id = $_GET['id'];
-            $this->update($id);
+        
+
+        if (isset($_POST['formUpdateArticle']))
+        {
+            $this->update($_GET['id']);
         } else {
-            throw new \Exception(("Page introuvable"));
+            $id = $_GET['id'];
+            $this->updateForm($id);
+            // $this->_articleManager = new ArticleManager();
+            // $article = $this->_articleManager->getArticle($id);
+            // $this->_view = new View('updatePost');
+            // $this->_view->generate(array('article' => $article));
         }
     }
 
@@ -23,7 +29,7 @@ class ControllerUpdate
     {
         $this->_articleManager = new ArticleManager();
         $article = $this->_articleManager->getArticle($id);
-        $this->_view = new View('UpdatePost');
+        $this->_view = new View('updatePost');
         $this->_view->generate(array('article' => $article));
     }
 

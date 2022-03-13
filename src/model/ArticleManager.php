@@ -37,7 +37,7 @@ class ArticleManager extends Model
     //met l'article à jour
     public function updateArticle($id)
     {
-        return $this->updateOne('article');
+        return $this->updateOne('article', $id);
     }
 
 }

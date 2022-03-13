@@ -37,9 +37,7 @@ class View
 
             //temporisation
             ob_start();
-
             require $file;
-
             //arreter la temporisation
             return ob_get_clean();
         } else {

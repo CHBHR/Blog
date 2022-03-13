@@ -10,7 +10,7 @@ class ControllerPost
     public function __construct()
     {
         if (isset($url) && count($url) < 1) {
-            throw new \Exception(("Page introuvable"));
+            throw new \Exception("Page introuvable");
         }
         elseif (isset($_GET['create'])) {
             $this->create();

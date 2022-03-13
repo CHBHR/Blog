@@ -12,19 +12,19 @@ class ControllerAccueil
     public function __construct($url)
     {
         if (!isset($url)) {
-            throw new \Exception(("Page introuvable"));
+            throw new \Exception("Page introuvable");
+            echo "page introuvable";
         }
         else {
-            $this->articles();
+            $this->_view = new View('Accueil');
+            $this->generateView();
         }
     }
 
-    private function articles()
+    private function generateView()
     {
-        $this->_articleManager = new ArticleManager();
-        $articles = $this->_articleManager->getArticles();
         $this->_view = new View('Accueil');
-        $this->_view->generate(array('articles' => $articles));
+        $this->_view->generatePage();
     }
 
 }

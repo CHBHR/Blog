@@ -33,12 +33,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="index.php?update">
                         Skills
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="index.php?listeArticle">
                         Articles
                     </a>
                 </li>
@@ -68,7 +68,11 @@
         </nav>
     </header>
 
+    <main>
+
     <?= $content ;?>
+
+    </main>
 
     <footer>
 

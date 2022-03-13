@@ -28,31 +28,61 @@ abstract class Model
     protected function getAll($table, $obj){
         $this->getBdd();
         $dbObjects = [];
-        $requete = self::$_bdd->prepare("SELECT * FROM ".$table." ORDER BY id desc");
-        $requete->execute();
+        $query = self::$_bdd->prepare("SELECT * FROM ".$table." ORDER BY id desc");
+        $query->execute();
 
         //on cree la variable data pour contenir les donnees de la table cible
-        while ($data = $requete->fetch(PDO::FETCH_ASSOC)){
+        while ($data = $query->fetch(PDO::FETCH_ASSOC)){
             //dbObjects contiendra les données sous forme d'objet
             $dbObjects[] = new $obj($data);
         }
 
         return $dbObjects;
-        $requete->closeCursor();
+        $query->closeCursor();
     }
 
     protected function getOne($table, $obj, $id)
     {
         $this->getBdd();
         $dbObject = [];
-        $requete = self::$_bdd->prepare("SELECT * FROM ".$table." WHERE id = ?");
-        $requete->execute(array($id));
-        while ($data = $requete->fetch(PDO::FETCH_ASSOC)) {
+        $query = self::$_bdd->prepare("SELECT * FROM ".$table." WHERE id = ?");
+        $query->execute(array($id));
+        while ($data = $query->fetch(PDO::FETCH_ASSOC)) {
             $dbObject[] = new $obj($data);
         }
 
         return $dbObject;
-        $requete->closeCursor();
+        $query->closeCursor();
+    }
+
+    protected function addArticle($table)
+    {
+        $this->getBdd();
+        $query = self::$_bdd->prepare("INSERT INTO ".$table." (titre, chapo, contenu, auteur_id) VALUES (?, ?, ?, ?)");
+        $query->execute(array($_POST['titre'], $_POST['chapo'], $_POST['contenu'], 1));
+        $query->closeCursor();
+    }
+
+    protected function deleteOne($table, $id)
+    {
+        $this->getBdd();
+        $query = self::$_bdd->prepare("DELETE FROM ".$table." WHERE id = :id");
+        $query->bindParam(":id", $id);
+        $query->execute();
+        $query->closeCursor();
+    }
+
+    protected function updateOne($table,$id)
+    {
+        $this->getBdd();
+        $query = self::$_bdd->prepare("UPDATE ".$table." SET titre=:titre, chapo=:chapo, contenu=:contenu WHERE id=:id");
+        $query->bindParam("titre", $_POST['titre']);
+        $query->bindParam("chapo", $_POST['chapo']);
+        $query->bindParam("contenu", $_POST['contenu']);
+        // $query->bindParam("dateMAJ", date("d-m-Y"));
+        $query->bindParam("id", $id);
+        $query->execute();
+        $query->closeCursor();
     }
 
 }

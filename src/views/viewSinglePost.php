@@ -16,4 +16,8 @@
         <input type="submit" value="Supprimer" name="buttonDeleteArticle">        
     </form>
 
+    <form method="post" action="update&id=<?= $article[0]->getId(); ?>">
+        <input type="submit" value="Modifier" name="buttonUpdateArticle">
+    </form>
+
 </div>

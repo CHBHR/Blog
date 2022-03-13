@@ -23,8 +23,6 @@ class Routeur
 
             //determine le controller en fonction de la valeur de cette variable
             if (isset($_SERVER['REQUEST_URI'])){
-                //on décompose l'url et on lui applique un filtre
-
                 $url = $_SERVER['QUERY_STRING'];
                 $url = explode('=', $url);
 
@@ -52,8 +50,7 @@ class Routeur
             } else {
                 // require_once('controller/ControllerAccueil.php');
                 // $this->ctrl = new ControllerAccueil($url);
-                echo "la page n'a pas été trouvée";
-                
+                echo "la page n'a pas été trouvée";                
             }
 
         } catch (\Exception $e) {
@@ -62,6 +59,7 @@ class Routeur
             // $this->view->generate(array('errorMsg' => $errorMsg));
             // require_once('views/viewError.php');
             echo 'page non trouvée';
+            var_dump($url);
         }
 
     }

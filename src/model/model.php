@@ -55,7 +55,7 @@ abstract class Model
         $query->closeCursor();
     }
 
-    protected function addArticle($table, $obj)
+    protected function addArticle($table)
     {
         $this->getBdd();
         $query = self::$_bdd->prepare("INSERT INTO ".$table." (titre, chapo, contenu, auteur_id) VALUES (?, ?, ?, ?)");
@@ -72,15 +72,17 @@ abstract class Model
         $query->closeCursor();
     }
 
-    protected function updateArticle($table, $titre, $chapo, $contenu, $id)
+    protected function updateOne($table)
     {
         $this->getBdd();
         $query = self::$_bdd->prepare("UPDATE ".$table." SET titre=:titre, chapo=:chapo, contenu=:contenu WHERE id=:id");
-        $query->bindParam("titre", $titre);
-        $query->bindParam("chapo", $chapo);
-        $query->bindParam("contenu", $contenu);
+        $query->bindParam("titre", $_POST['titre']);
+        $query->bindParam("chapo", $_POST['chapo']);
+        $query->bindParam("contenu", $_POST['contenu']);
         // $query->bindParam("dateMAJ", date("d-m-Y"));
-        $query->bindParam("id", $id);
+        $query->bindParam("id", $_POST['id']);
+        $query->execute();
+        $query->closeCursor();
     }
 
 }

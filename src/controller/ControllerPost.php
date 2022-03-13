@@ -20,7 +20,6 @@ class ControllerPost
         }
         elseif (isset($_GET['action']) && isset($_GET['action']) == "delete" && isset($_GET['id'])) {
             $id = $_GET['id'];
-            echo $id;
             $this->delete($id);
         }
         else {
@@ -56,17 +55,17 @@ class ControllerPost
     private function store()
     {
         $this->_articleManager = new ArticleManager;
-        $article = $this->_articleManager->createArticle();
-        $articles = $this->_articleManager->getArticles();
+        $this->_articleManager->createArticle();
         $this->_view = new View('accueil');
-        $this->_view->generate(array('article' => $article));
+        $this->_view->generatePage();
     }
 
     private function delete($id)
     {
         $this->_articleManager = new ArticleManager;
-        $article = $this->_articleManager->deleteArticle($id);
+        $this->_articleManager->deleteArticle($id);
         $this->_view = new View('accueil');
         $this->_view->generatePage();
     }
+
 }

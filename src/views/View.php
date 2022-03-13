@@ -25,14 +25,6 @@ class View
         echo $view;
     }
 
-    // public function generatePost($data){
-
-    //     $content = $this->generateFile($this->_file,$data);
-
-    //     $view = $this->generateFile('view/templateSingle.php',  array('pageTitle'=> $this->_pageTitle, 'content' => $content));
-    //     echo $view;
-    // }
-
     public function generatePage(){
         $content = $this->generateFileSimple($this->_file);
         $view = $this->generateFile('views/template.php', array('pageTitle'=> $this->_pageTitle, 'content' => $content));

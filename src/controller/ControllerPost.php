@@ -15,10 +15,10 @@ class ControllerPost
         elseif (isset($_GET['create'])) {
             $this->create();
         }
-        // elseif (isset($_GET['status']) && isset($_GET['status']) == "new") {
-        //     $this->store();
-        // }
-        elseif (isset($_GET['status']) && isset($_GET['status']) == "delete" && isset($_GET['id'])) {
+        elseif (isset($_GET['status']) && isset($_GET['status']) == "new") {
+            $this->store();
+        }
+        elseif (isset($_GET['action']) && isset($_GET['action']) == "delete" && isset($_GET['id'])) {
             $id = $_GET['id'];
             echo $id;
             $this->delete($id);

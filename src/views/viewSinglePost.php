@@ -12,7 +12,7 @@
 
 <div>
 
-    <form method="post" action="post&status=delete&id=<?= $article[0]->getId(); ?>">
+    <form method="post" action="post&action=delete&id=<?= $article[0]->getId(); ?>">
         <input type="submit" value="Supprimer" name="buttonDeleteArticle">        
     </form>
 

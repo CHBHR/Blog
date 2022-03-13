@@ -9,3 +9,11 @@
     <p><?= date('d/m/Y',strtotime($article[0]->getDateMAJ())); ?></p>
 
 </div>
+
+<div>
+
+    <form method="post" action="post&status=delete&id=<?= $article[0]->getId(); ?>">
+        <input type="submit" value="Supprimer" name="buttonDeleteArticle">        
+    </form>
+
+</div>

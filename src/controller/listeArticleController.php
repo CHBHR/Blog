@@ -20,6 +20,7 @@
         if(insertDetails($con, $titre, $chapo, $contenu))
         {
             echo "Article sauvegardé !";
+            //header("Location: controller/listeArtcileController.php");
         }
 
     }

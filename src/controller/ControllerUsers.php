@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-//require_once 'model/UserManager.php';
-// require_once 'views/View.php';
 require_once 'helpers/session_helper.php';
 
 class ControllerUsers
@@ -14,15 +12,14 @@ class ControllerUsers
     public function __construct()
     {
         $this->userManager = new UserRepository;
-        //if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if (isset($_POST['formSignIn'])){
             switch($_POST['type']){
                 case 'register':
                     $this->register();
                     break;
-            }$this->generateView();
+            }
+            $this->generateView();
         }
-        //$this->userManager = new UserManager();
         else{
             $this->generateView();
         }

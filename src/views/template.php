@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Blog de CHBHR</title>
 
-    <link rel="stylesheet" href="public/css/normalize.css">
+    <link rel="stylesheet" href="/public/css/normalize.css">
 
     <!-- Importation des fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,11 +14,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet"> 
     
-    <link rel="stylesheet" href="public/css/header.css">
+    <link rel="stylesheet" href="/public/css/header.css">
 
-    <link rel="stylesheet" href="public/css/stylesheet.css">
+    <link rel="stylesheet" href="/public/css/stylesheet.css">
 
-    <link rel="stylesheet" href="public/css/footer.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
     
 </head>
 <body>

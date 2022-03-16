@@ -2,14 +2,36 @@
 
 declare(strict_types=1);
 
-require_once('./controller/Routeur.php');
+//require_once 'vendor/autoload.php';
 
-function autoload($class_name) {
-    require_once('classes/Route.php');
-}
+// $request = $_SERVER['REQUEST_URI'];
 
-// require_once("controller/Routeur.php");
+// var_dump($request);
 
-// $routeur = new Routeur();
+// echo "index";
+// echo "</br>";
 
-// $routeur->routeReq();
+// switch($request) {
+//     case '/src/':
+//         header("Location: /controller/AccueilController.php");
+//         break;
+//     case '/':
+//         require_once __DIR__ . '/controller/AccueilController.php';
+//         break;
+//     case '':
+//         require_once __DIR__ . '/controller/AccueilController.php';
+//         break;
+//     default:
+//         http_response_code(404);
+//         //require_once __DIR__ . '/views/404.php';
+//         echo" 404 ";
+//         break;
+// }
+
+// echo "end index";
+
+require_once("controller/Routeur.php");
+
+$routeur = new Routeur();
+
+$routeur->routeReq();

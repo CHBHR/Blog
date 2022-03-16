@@ -17,7 +17,6 @@ class Routeur
             spl_autoload_register(function($class){
                 require_once('model/'.$class.'.php');
             });
-            var_dump(($_SERVER['REQUEST_URI']));
 
             //creation de la variable url
             $url = '';
@@ -36,7 +35,7 @@ class Routeur
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = "Controller".$controller;
                 //on retrouve le chemin du controller voulu
-                $controllerFile = "controller/".$controllerClass.".php";
+                $controllerFile ="controller/".$controllerClass.".php";
 
                 //check si le fichier du controller existe
                 if (file_exists($controllerFile)){
@@ -49,8 +48,8 @@ class Routeur
                 }
 
             } else {
-                // require_once('controller/ControllerAccueil.php');
-                // $this->ctrl = new ControllerAccueil($url);
+                require_once('controller/ControllerAccueil.php');
+                $this->ctrl = new ControllerAccueil($url);
                 echo "la page n'a pas été trouvée";                
             }
 

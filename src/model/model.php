@@ -85,4 +85,75 @@ abstract class Model
         $query->closeCursor();
     }
 
+    //from tuto
+    //execute the prepare statement
+    protected function query($sql)
+    {
+        $this->getBdd();
+        return self::$_bdd->prepare($sql);
+    }
+
+    //Binnd values to prepare statement using parameters
+    public function bind($param, $value, $type = null)
+    {
+        if(is_null($type)){
+            switch(true){
+                case is_int($value):
+                    $type = PDO::PARAM_INT;
+                    break;
+                case is_bool($value):
+                    $type = PDO::PARAM_BOOL;
+                    break;
+                case is_null($value):
+                    $type = PDO::PARAM_NULL;
+                    break;
+                default:
+                $type = PDO::PARAM_STR;
+            }
+            $this->stmt->bindValue($param,$value, $type);
+        }
+    }
+
+    // public function execute()
+    // {
+    //     return $this->execute();
+    // }
+
+    //return multiple records as array
+    // public function resultSet()
+    // {
+    //     $this->getBdd();
+    //     $stmt = self::$_bdd;
+    //     $this->execute();
+    //     return $stmt->fetchAll(PDO::FETCH_OBJ);
+    // }
+
+    //return single object
+    // public function single()
+    // {
+    //     $this->getBdd();
+    //     $dbObject = [];
+    //     $query = self::$_bdd->prepare("SELECT * FROM ".$table." WHERE id = ?");
+    //     $query->execute(array($id));
+    //     while ($data = $query->fetch(PDO::FETCH_ASSOC)) {
+    //         $dbObject[] = new $obj($data);
+    //     }
+
+    //     return $dbObject;
+    //     $query->closeCursor();
+
+    //     $this->getBdd();
+    //     $stmt = self::$_bdd;
+    //     $this->execute();
+    //     return $stmt->fetch(PDO::FETCH_OBJ);
+    // }
+
+    //Get row count
+    public function rowCount()
+    {
+        $this->getBdd();
+        $stmt = self::$_bdd;
+        return $stmt->rowCount();
+    }
+
 }

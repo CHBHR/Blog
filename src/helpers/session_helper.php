@@ -24,5 +24,5 @@ function redirect($location){
     //header("location: ".$location);
     //exit();
     //echo"flash redirection issue";
-    var_dump($location);
+    //var_dump($location);
 }

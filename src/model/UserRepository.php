@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once('Repository.php');
+
 class UserRepository extends Repository
 {
 
@@ -43,12 +45,15 @@ class UserRepository extends Repository
         $stmt->bindParam(":email", $email);
         $stmt->execute();
 
-        $count = $stmt->rowCount();
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
 
-        if($count > 0){
-            return true;
+        // var_dump($email);
+        // var_dump($result);
+        if(!empty($result->nom_utilisateur)){
+            return $result;
         }else{
             return false;
+            echo "false";
         }
     }
 
@@ -65,6 +70,22 @@ class UserRepository extends Repository
         }else{
             return false;
         }
+    }
+
+    public function login($nomOuEmail, $mdp)
+    {
+        $result = $this->findUserByEmailOrUsername($nomOuEmail, $nomOuEmail);
+
+        if($result == false) return false;
+
+        $hashedPassword = $result->mdp;
+        if(password_verify($mdp, $hashedPassword)){
+            //var_dump($result);
+            return $result;
+        }else{
+            return false;
+        }
+
     }
 
 }

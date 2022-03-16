@@ -15,16 +15,13 @@ require_once 'views/View.php';
 class Routeur
 {
 
-    private $_ctrl;
-    private $_view;
-
     public function routeReq(){
 
         try {
             //chargement automatique des classes du dossier model
-            spl_autoload_register(function($class){
-                require_once('model/'.$class.'.php');
-            });
+            // spl_autoload_register(function($class){
+            //     require_once('model/'.$class.'.php');
+            // });
 
             //creation de la variable url
             $url = '';

@@ -17,3 +17,18 @@
     </form>
 
 </div>
+
+<div>
+
+    <h2>Login</h2>
+
+    <?php flash('login') ?>
+
+    <form method="post" action="users&type=login">
+        <input type="hidden" name="type" value="login">
+        <input type="text" name="nomUtilisateur/email" placeholder="nom d'utilisateur ou email...">
+        <input type="password" name="mdp" placeholder="mot de passe...">
+        <button type="submit" name="formLogin">Login</button>
+    </form>
+
+</div>

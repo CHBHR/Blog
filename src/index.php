@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-//require_once 'vendor/autoload.php';
-
-// $request = $_SERVER['REQUEST_URI'];
-
-// var_dump($request);
-
 // echo "index";
 // echo "</br>";
 

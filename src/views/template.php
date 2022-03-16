@@ -1,3 +1,17 @@
+<?php
+
+// if (!isset($_SESSION)) {
+//     session_start();
+// }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['postdata'] = $_POST;
+    unset($_POST);
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         Skills
                     </a>
                 </li>
@@ -57,7 +71,7 @@
                        Bonjour " . $_SESSION['nomUtilisateur'] . "
                     </li>
                     <li>
-                        <a href='#'>
+                        <a href='users&q=logout'>
                             Deconnexion
                         </a>
                     </li>";
@@ -66,6 +80,7 @@
                 
             </ul>
         </nav>
+
     </header>
 
     <main>

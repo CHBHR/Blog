@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once 'model/UserManager.php';
+//require_once 'model/UserManager.php';
 // require_once 'views/View.php';
 require_once 'helpers/session_helper.php';
 
@@ -13,7 +13,7 @@ class ControllerUsers
 
     public function __construct()
     {
-        $this->userManager = new UserManager;
+        $this->userManager = new UserRepository;
         //if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if (isset($_POST['formSignIn'])){
             switch($_POST['type']){
@@ -69,6 +69,16 @@ class ControllerUsers
         if($this->userManager->findUserByEmailOrUsername($data['nomUtilisateur'], $data['email'])){
             flash("register", "Le nom d'utilisateur ou email est déjà pris");
         }
+
+        //passed all validation checks
+        //now going to hash password
+        $data['mdp'] = password_hash($data['mdp'], PASSWORD_DEFAULT);
+
+        if($this->userManager->register($data)){
+            redirect("index.php?accueil");
+        }else{
+            die("Quelque chose s'est mal passé");
+        }
     }
 
     private function generateView()
@@ -77,15 +87,3 @@ class ControllerUsers
         $this->_view->generatePage();
     }
 }
-
-//$init = new ControllerUsers;
-
-//Ensure that user is sending a POST request
-// if($_SERVER['REQUEST_METHOD'] == 'POST'){
-//     switch($_POST['type']){
-//         case 'register':
-//             $init->register();
-//             echo "case register";
-//             break;
-//     }
-// }

@@ -21,8 +21,9 @@ class ControllerListeArticle
 
     private function articles()
     {
-        $this->_articleManager = new ArticleManager();
-        $articles = $this->_articleManager->getArticles();
+        //$this->_articleManager = new ArticleManager();
+        $this->_articleManager = new ArticleRepository();
+        $articles = $this->_articleManager->getAllArticle('Article');
         $this->_view = new View('listeArticle');
         $this->_view->generate(array('articles' => $articles));
     }

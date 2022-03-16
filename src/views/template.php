@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.php?update">
+                    <a href="">
                         Skills
                     </a>
                 </li>
@@ -47,7 +47,7 @@
                 if(!isset($_SESSION['nomUtilisateur']))
                 {
                     echo " <li>
-                    <a href='#'>
+                    <a href='index.php?users'>
                         Connexion/Inscription
                     </a>
                     </li>";

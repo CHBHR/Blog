@@ -13,11 +13,13 @@ class Article
     private $_date_mise_a_jour;
     private $_auteur_id;
 
-    public function __construct($data){
+    public function __construct($data)
+    {
         $this->hydrate($data);
     }
     
-    public function hydrate(array $data){
+    public function hydrate(array $data)
+    {
         foreach ($data as $key => $value) {
             //creation des setters
             $method = 'set'.ucfirst($key);
@@ -25,6 +27,43 @@ class Article
                 $this->$method($value);
             }
         }
+    }
+
+    //getters
+
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    public function getTitre()
+    {
+        return $this->_titre;
+    }
+
+    public function getChapo()
+    {
+        return $this->_chapo;
+    }
+
+    public function getContenu()
+    {
+        return $this->_contenu;
+    }
+
+    public function getDateCreation()
+    {
+        return $this->_date_creation;
+    }
+
+    public function getDateMAJ()
+    {
+        return $this->_date_mise_a_jour;
+    }
+
+    public function getAuteurId()
+    {
+        return $this->_auteur_id;
     }
 
     //setters
@@ -74,43 +113,6 @@ class Article
         if ($auteurId > 0){
             $this->_auteurId = $auteurId;
         }
-    }
-
-    //getters
-
-    public function getId()
-    {
-        return $this->_id;
-    }
-
-    public function getTitre()
-    {
-        return $this->_titre;
-    }
-
-    public function getChapo()
-    {
-        return $this->_chapo;
-    }
-
-    public function getContenu()
-    {
-        return $this->_contenu;
-    }
-
-    public function getDateCreation()
-    {
-        return $this->_date_creation;
-    }
-
-    public function getDateMAJ()
-    {
-        return $this->_date_mise_a_jour;
-    }
-
-    public function getAuteurId()
-    {
-        return $this->_auteur_id;
     }
 
 }

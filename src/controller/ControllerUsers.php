@@ -131,8 +131,7 @@ class ControllerUsers
         $_SESSION['email'] = $user->email;
         $_SESSION['role'] = $user->role;
         echo "session created";
-        //$this->_view = new View('?accueil');
-        //$this->_view->generatePage();
+        redirect("index.php?accueil");
     }
 
     private function logout()

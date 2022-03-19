@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once 'views/View.php';
+require_once 'model/ArticleRepository.php';
 
 class ControllerListeArticle
 {

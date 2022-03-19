@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+require_once 'model/Repository.php';
+require_once 'model/Article.php';
+
 class ArticleRepository extends Repository
 {
     public function getAllArticle($obj){

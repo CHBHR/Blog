@@ -3,8 +3,9 @@
     <div class="card mb-3">
         <div class="card-body">
             <h2><?= $post->titre ?></h2>
-            <small><?= $post->date_creation ?></small>
+            <small class="badge bg-secondary"><?= $post->getFormatedDate() ?></small>
             <p><?= $post->chapo ?></p>
+            <!--<p><?= $post->getExcerpt() ?></p>-->
             <a href="/posts/<?= $post->id ?>" class="btn btn-primary">Lire plus</a>
         </div>
     </div>

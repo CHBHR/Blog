@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Post;
+use App\Models\Article;
 
 class BlogController extends Controller {
 
@@ -13,7 +13,7 @@ class BlogController extends Controller {
 
     public function index()
     {
-        $post = new Post($this->getDB());
+        $post = new Article($this->getDB());
         $posts = $post->getAll();
 
         return $this->view('blog.index', compact('posts'));
@@ -21,7 +21,7 @@ class BlogController extends Controller {
 
     public function show(int $id)
     {
-        $post = new Post($this->getDB());
+        $post = new Article($this->getDB());
         $post = $post->findById($id);
 
         return $this->view('blog.show', compact('post'));

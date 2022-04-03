@@ -8,9 +8,9 @@ class Article extends Model{
 
     protected $table = 'articles';
 
-    public function getFormatedDate(): string
+    public function getFormatedDate($date): string
     {
-        return (new DateTime($this->date_creation))->format('d/m/Y à H:m');
+        return (new DateTime($date))->format('d/m/Y à H:i');
     }
 
     /**
@@ -20,4 +20,14 @@ class Article extends Model{
     {
         return substr($this->contenu, 0, 150) . '...';
     }
+
+    //TO DO
+    // public function getAuthor($id)
+    // {
+    //     $db = $this->db::getPDO();
+    //     $query = "SELECT nom_utilisateur FROM utilisateurs WHERE id = $id";
+    //     $stmt = $db->prepare($query);
+    //     $stmt->execute();
+    //     return $stmt->fetch();
+    // }
 }

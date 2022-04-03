@@ -2,6 +2,6 @@
 <small><?= $params['post']->chapo ?></small>
 <p><?= $params['post']->contenu ?></p>
 <small><?= $params['post']->getFormatedDate() ?></small>
-<p><?= $params['post']->auteur_id ?></p>
+<p><?= var_dump($params['post']->auteur_id) ?></p>
 
 <a href="/posts" class="btn btn-secondary">Revenir en arrière</a>

@@ -2,21 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Models\Post;
 
 class BlogController extends Controller {
 
+    public function welcome()
+    {
+        return $this->view('blog.welcome');
+    }
+
     public function index()
     {
-        return $this->view('blog.index');
+        $post = new Post($this->getDB());
+        $posts = $post->getAll();
+
+        return $this->view('blog.index', compact('posts'));
     }
 
     public function show(int $id)
     {
-        $req = $this->db::getPDO()->query('SELECT * FROM article');
-        $posts = $req->fetchAll();
-        foreach($posts as $post){
-            echo $post->titre;
-        }
-        return $this->view('blog.show', compact('id'));
+        $post = new Post($this->getDB());
+        $post = $post->findById($id);
+
+        return $this->view('blog.show', compact('post'));
     }
 }

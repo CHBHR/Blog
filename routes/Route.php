@@ -2,7 +2,7 @@
 
 namespace Router;
 
-use Database\Repository;
+use Database\DBConnection;
 
 class Route {
 
@@ -19,8 +19,8 @@ class Route {
     public function matches(string $url)
     {
         /**
-         * fisrt expression: tout ce qui est un alpha numérique après les ':' avec plusieurs répétitions possibles
-         * second expression: tout ce qui n'est pas un slash avec plusieurs répétitions possibles
+         * 1ere expression: tout ce qui est un alpha numérique après les ':' avec plusieurs répétitions possibles
+         * 2eme expression: tout ce qui n'est pas un slash avec plusieurs répétitions possibles
          * 
          * permet de récupérer un paramètre éventuel
          */
@@ -38,7 +38,7 @@ class Route {
     public function execute()
     {
         $params = explode('@', $this->action);
-        $controller = new $params[0](new Repository);
+        $controller = new $params[0](new DBConnection);
         $method = $params[1];
 
         /**

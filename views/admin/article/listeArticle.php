@@ -1,5 +1,9 @@
 <h1>Administration des articles</h1>
 
+<?php if(isset($_GET['success'])): ?>
+    <div class="alert alert-success">Vous êtes connecté!</div>
+<?php endif ?>
+
 <a href="/admin/posts/create" class="btn btn-success my-3">Créer un nouvel Article</a>
 
 <table class="table">
@@ -25,7 +29,7 @@
                 <!-- <td><?= $post->contenu ?></td> -->
                 <td><?= $post->getFormatedDate($post->date_creation) ?></td>
                 <td><?= $post->getFormatedDate($post->date_mise_a_jour) ?></td>
-                <td><?= $post->auteur_id ?></td>
+                <td><?= $post->getAuthor($post->auteur_id) ?></td>
                 <td>
                     <a href="/admin/posts/edit/<?= $post->id ?>" class="btn btn-warning">Modifier</a>
                     <form action="/admin/posts/delete/<?= $post->id ?>" method="POST" class="d-inline">

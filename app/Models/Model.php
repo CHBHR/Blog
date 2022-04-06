@@ -41,10 +41,9 @@ abstract class Model{
             $i++;
         }
 
-        return $this->queryModel(
+        return($this->queryModel(
             "INSERT INTO {$this->table} ($firstParethesis) 
-            VALUES($secondParenthesis)"
-            );
+            VALUES($secondParenthesis)", $data));
     }
 
     public function update(int $id, array $data, $updateDate = false)
@@ -53,7 +52,7 @@ abstract class Model{
         $i = 1;
 
         foreach ($data as $key => $value) {
-            $comma = $i === count($data) ? " " : ', ';
+            $comma = $i === count($data) ? "" : ', ';
             /**
              * Ajoute la valeur de la clef renvoyer par le formulaire à la même clef dans un tableau grâce au Hypertext Preprocessor
              */

@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Blog</a>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand pl-3" href="/">Blog</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,6 +23,12 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/posts">Derniers Articles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/posts">Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Se connecter</a>
       </li>
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,6 +44,13 @@
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li> -->
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <?php if (isset($_SESSION['auth'])): ?>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Se déconnecter</a>
+      </li>
+      <?php endif?>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

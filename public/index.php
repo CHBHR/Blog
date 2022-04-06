@@ -10,9 +10,19 @@ define('SCRIPT', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
 
 $router = new Router($_GET['url']);
 
+/**
+ * Les routes Article
+ */
 $router->get('/', 'App\Controllers\BlogController@welcome');
 $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/:id', 'App\Controllers\BlogController@show');
+
+/**
+ * Les routes utilisateur
+ */
+$router->get('/login', 'App\Controllers\UserController@login');
+$router->post('/login', 'App\Controllers\UserController@loginPost');
+$router->get('/logout', 'App\Controllers\UserController@logout');
 
 /**
  * Les routes admin

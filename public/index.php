@@ -14,8 +14,15 @@ $router->get('/', 'App\Controllers\BlogController@welcome');
 $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/:id', 'App\Controllers\BlogController@show');
 
+/**
+ * Les routes admin
+ */
 $router->get('/admin/posts', 'App\Controllers\Admin\ArticleController@listeArticle');
+$router->get('/admin/posts/create', 'App\Controllers\Admin\ArticleController@create');
+$router->post('/admin/posts/create', 'App\Controllers\Admin\ArticleController@createArticle');
 $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\ArticleController@destroy');
+$router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@edit');
+$router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@update');
 
 try {
     $router->run();

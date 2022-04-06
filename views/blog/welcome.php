@@ -1,13 +1,29 @@
-<h1> Homepage </h1>
+<h1> Le blog de Chris </h1>
 
-<p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium totam rerum facere minima repellat aperiam sed officiis ratione consequatur accusamus, dolorum vero modi iste? Molestias porro placeat voluptates totam architecto unde id, quia dolore explicabo quisquam blanditiis consequatur hic perferendis iste quasi repellendus rerum, quaerat aliquam quidem soluta debitis accusamus laborum. Maiores vitae fugit consectetur quibusdam obcaecati facilis illum cupiditate corrupti atque sit fugiat nam veritatis voluptates delectus assumenda inventore dolores tenetur quas, nisi architecto ipsa officiis illo nulla eaque. Ea tempora nesciunt vel consectetur, obcaecati hic voluptatibus cum optio architecto sint impedit fugit eos officia quasi deleniti doloremque autem commodi, cumque repellendus sed! Beatae eum expedita sit quis nesciunt inventore aperiam quo veritatis corrupti earum pariatur iste vero velit, nobis veniam? Sequi ducimus consectetur repellendus aliquid illo similique magnam unde rerum, numquam sint provident quam nesciunt velit cum possimus, corporis libero dolor quibusdam quaerat et. Perspiciatis totam itaque nisi veniam magnam, explicabo repellat enim cupiditate nesciunt rerum saepe animi consequuntur voluptatem fuga cum atque similique qui nostrum omnis excepturi architecto ex, neque voluptatibus unde? Ipsam aliquam reiciendis sapiente eveniet numquam repudiandae, tempore iure totam voluptatum illo, ab ipsum quam voluptatibus officiis laborum. Quo beatae nisi natus saepe accusantium atque?
-</p>
+<div class="container">
 
-<p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium totam rerum facere minima repellat aperiam sed officiis ratione consequatur accusamus, dolorum vero modi iste? Molestias porro placeat voluptates totam architecto unde id, quia dolore explicabo quisquam blanditiis consequatur hic perferendis iste quasi repellendus rerum, quaerat aliquam quidem soluta debitis accusamus laborum. Maiores vitae fugit consectetur quibusdam obcaecati facilis illum cupiditate corrupti atque sit fugiat nam veritatis voluptates delectus assumenda inventore dolores tenetur quas, nisi architecto ipsa officiis illo nulla eaque. Ea tempora nesciunt vel consectetur, obcaecati hic voluptatibus cum optio architecto sint impedit fugit eos officia quasi deleniti doloremque autem commodi, cumque repellendus sed! Beatae eum expedita sit quis nesciunt inventore aperiam quo veritatis corrupti earum pariatur iste vero velit, nobis veniam? Sequi ducimus consectetur repellendus aliquid illo similique magnam unde rerum, numquam sint provident quam nesciunt velit cum possimus, corporis libero dolor quibusdam quaerat et. Perspiciatis totam itaque nisi veniam magnam, explicabo repellat enim cupiditate nesciunt rerum saepe animi consequuntur voluptatem fuga cum atque similique qui nostrum omnis excepturi architecto ex, neque voluptatibus unde? Ipsam aliquam reiciendis sapiente eveniet numquam repudiandae, tempore iure totam voluptatum illo, ab ipsum quam voluptatibus officiis laborum. Quo beatae nisi natus saepe accusantium atque?
-</p>
+    <p>
+        Bienvenu dur mon blog, créé pour le Projet 05 de mon parcours "Développeur d'application PHP / Symfony" avec Openclassrooms.
+        Ici vous trouverez des articles de blog que j'aurai partagé, mon CV en téléchargement, un formulaire de contact et juste des informations sur mon parcours et mes compétences.
+    </p>
 
-<p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium totam rerum facere minima repellat aperiam sed officiis ratione consequatur accusamus, dolorum vero modi iste? Molestias porro placeat voluptates totam architecto unde id, quia dolore explicabo quisquam blanditiis consequatur hic perferendis iste quasi repellendus rerum, quaerat aliquam quidem soluta debitis accusamus laborum. Maiores vitae fugit consectetur quibusdam obcaecati facilis illum cupiditate corrupti atque sit fugiat nam veritatis voluptates delectus assumenda inventore dolores tenetur quas, nisi architecto ipsa officiis illo nulla eaque. Ea tempora nesciunt vel consectetur, obcaecati hic voluptatibus cum optio architecto sint impedit fugit eos officia quasi deleniti doloremque autem commodi, cumque repellendus sed! Beatae eum expedita sit quis nesciunt inventore aperiam quo veritatis corrupti earum pariatur iste vero velit, nobis veniam? Sequi ducimus consectetur repellendus aliquid illo similique magnam unde rerum, numquam sint provident quam nesciunt velit cum possimus, corporis libero dolor quibusdam quaerat et. Perspiciatis totam itaque nisi veniam magnam, explicabo repellat enim cupiditate nesciunt rerum saepe animi consequuntur voluptatem fuga cum atque similique qui nostrum omnis excepturi architecto ex, neque voluptatibus unde? Ipsam aliquam reiciendis sapiente eveniet numquam repudiandae, tempore iure totam voluptatum illo, ab ipsum quam voluptatibus officiis laborum. Quo beatae nisi natus saepe accusantium atque?
-</p>
+    <p>
+        N'hésitez pas à vous balader sur le site, de laisser un commentaire et de vous créer un compte si vous voulez être tennu au courant des dernières avancées et mises à jours.
+    </p>
+
+</div>
+
+<div class="container">
+    <h2>
+        Bientot ici, la liste des derniers articles
+    </h2>
+    <p>
+        et Ici, un bouton pour accéder à la page
+    </p>
+</div>
+
+<div class="container">
+    <h3>
+        Bientot ici, le téléchargement de mon CV Et la liste de mes skills
+    </h3>
+</div>

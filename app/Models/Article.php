@@ -21,13 +21,18 @@ class Article extends Model{
         return substr($this->contenu, 0, 150) . '...';
     }
 
-    //TO DO
-    // public function getAuthor($id)
+    // public function create(array $data)
     // {
-    //     $db = $this->db::getPDO();
-    //     $query = "SELECT nom_utilisateur FROM utilisateurs WHERE id = $id";
-    //     $stmt = $db->prepare($query);
-    //     $stmt->execute();
-    //     return $stmt->fetch();
+    //     parent::create($data);
     // }
+
+    public function getAuthor($id): string
+    {
+        $db = $this->db::getPDO();
+        $query = "SELECT nom_utilisateur FROM utilisateurs WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$id]);
+        $row = $stmt->fetch();
+        return ($row->nom_utilisateur);
+    }
 }

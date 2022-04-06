@@ -1,5 +1,7 @@
 <h1>Administration des articles</h1>
 
+<a href="/admin/posts/create" class="btn btn-success my-3">Créer un nouvel Article</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -25,7 +27,7 @@
                 <td><?= $post->getFormatedDate($post->date_mise_a_jour) ?></td>
                 <td><?= $post->auteur_id ?></td>
                 <td>
-                    <a href="#" class="btn btn-warning">Modifier</a>
+                    <a href="/admin/posts/edit/<?= $post->id ?>" class="btn btn-warning">Modifier</a>
                     <form action="/admin/posts/delete/<?= $post->id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>

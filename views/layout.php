@@ -50,6 +50,5 @@
     <?= $content ?>
 </div>
     
-    
 </body>
 </html>

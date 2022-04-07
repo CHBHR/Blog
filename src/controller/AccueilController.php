@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-require_once __DIR__.'/../views/View.php';
+require_once 'views/View.php';
 
-class AccueilController
+class ControllerAccueil
 {
     private $_articleManager;
     private $_view;
@@ -17,7 +17,6 @@ class AccueilController
         }
         else {
             //$this->_view = new View('Accueil');
-            echo"else";
             $this->generateView();
         }
     }
@@ -29,4 +28,3 @@ class AccueilController
     }
 
 }
-echo"accueil";

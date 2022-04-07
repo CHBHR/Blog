@@ -23,6 +23,7 @@ $router->get('/posts/:id', 'App\Controllers\BlogController@show');
 $router->get('/login', 'App\Controllers\UserController@login');
 $router->post('/login', 'App\Controllers\UserController@loginPost');
 $router->get('/logout', 'App\Controllers\UserController@logout');
+$router->post('/signin', 'App\Controllers\UserController@signin');
 
 /**
  * Les routes admin

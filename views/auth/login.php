@@ -13,7 +13,7 @@
 <?php endif ?>
 <?php session_destroy() ?>
 
-<h1>Se connecter</h1>
+<h2>Se connecter</h2>
 
 <form action="/login" method="POST">
     <div class="form-group">
@@ -30,4 +30,27 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Se connecter</button>
+</form>
+
+<h2>S'inscrire</h2>
+
+<form action="/signin" method="POST">
+    <div class="form-group">
+        <label for="username">Nom d'utilisateur / Username</label>
+        <input type="text" class="form-control" name="username" id="username">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" id="email">
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe / Password</label>
+        <input type="password" class="form-control" name="password" id="password">
+    </div>
+    <div class="form-group">
+        <label for="passwordCheck">Répétez votre mot de passe / Password Check</label>
+        <input type="passwordCheck" class="form-control" name="passwordCheck" id="passwordCheck">
+    </div>
+
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>

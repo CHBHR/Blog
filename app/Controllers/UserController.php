@@ -37,14 +37,21 @@ class UserController extends Controller{
 
         $user = (new User($this->getDB()))->getByUserName($_POST['username']);
 
-        if (password_verify($_POST['password'], $user->mdp)) {
+        if (password_verify($_POST['password'], $user->mdp) && $user->role === 'admin') {
 
             /**
              * On stock la valeur du role dans la session
              */
             $_SESSION['auth'] = $user->role;
             return header('Location: /admin/posts?success=true');
+
+        } elseif (password_verify($_POST['password'], $user->mdp)) {
+            $_SESSION['auth'] = $user->role;
+            return header('Location: /?success=true');
+            
         } else {
+            $errors['problem'][] = "il y a eu un probleme";
+            $_SESSION['errors'][] = $errors;
             return header('Location: /login');
         }
     }

@@ -27,9 +27,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/admin/posts">Admin</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Se connecter</a>
-      </li>
+
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
@@ -49,6 +47,10 @@
       <?php if (isset($_SESSION['auth'])): ?>
       <li class="nav-item">
         <a class="nav-link" href="/logout">Se déconnecter</a>
+      </li>
+      <?php else: ?>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Se connecter</a>
       </li>
       <?php endif?>
     </ul>

@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
         <label for="passwordCheck">Répétez votre mot de passe / Password Check</label>
-        <input type="passwordCheck" class="form-control" name="passwordCheck" id="passwordCheck">
+        <input type="password" class="form-control" name="passwordCheck" id="passwordCheck">
     </div>
 
     <button type="submit" class="btn btn-primary">S'inscrire</button>

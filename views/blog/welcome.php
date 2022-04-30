@@ -1,3 +1,7 @@
+<?php if(isset($_GET['success'])): ?>
+    <div class="alert alert-success">Vous êtes connecté!</div>
+<?php endif ?>
+
 <h1> Le blog de Chris </h1>
 
 <div class="container">

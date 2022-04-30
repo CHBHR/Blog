@@ -12,6 +12,11 @@ class UserController extends Controller{
         return $this->view('auth.login');
     }
 
+    public function signup()
+    {
+        return $this->view('auth.signup');
+    }
+
     public function loginPost()
     {
         /**
@@ -67,12 +72,12 @@ class UserController extends Controller{
         if ($user->getByUserName($_POST['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
             $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            header('Location: /signup');
             exit;
         } elseif ($user->getByEmail($_POST['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
             $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            header('Location: /signup');
             exit;
         } else {
 
@@ -91,13 +96,13 @@ class UserController extends Controller{
                 $_SESSION['auth'] = $user->role;
                 return header('Location: /');
             } else {
-                return header('Location: /login');
+                return header('Location: /signup');
             }
         }
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            header('Location: /signup');
             exit;
         }
 

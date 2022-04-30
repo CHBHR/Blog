@@ -13,9 +13,9 @@
 <?php endif ?>
 <?php session_destroy() ?>
 
-<h2>Se connecter</h2>
+<h2>S'inscrire</h2>
 
-<form action="/login" method="POST">
+<form action="/signin" method="POST">
     <div class="form-group">
         <label for="username">Nom d'utilisateur / Username</label>
         <input type="text" class="form-control" name="username" id="username">
@@ -28,13 +28,10 @@
         <label for="password">Mot de passe / Password</label>
         <input type="password" class="form-control" name="password" id="password">
     </div>
+    <div class="form-group">
+        <label for="passwordCheck">Répétez votre mot de passe / Password Check</label>
+        <input type="passwordCheck" class="form-control" name="passwordCheck" id="passwordCheck">
+    </div>
 
-    <button type="submit" class="btn btn-primary">Se connecter</button>
+    <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
-
-<div class="container mt-3">
-    <p>
-        Pas encore inscrit?
-    </p>
-    <a class="btn btn-success" href="/signup" role="button">S'inscrire</a>
-</div>

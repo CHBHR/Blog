@@ -4,7 +4,7 @@ namespace App\Models;
 
 class User extends Model{
 
-    protected $table = 'utilisateurs';
+    protected $table = 'utilisateur';
 
     public function getByUserName(string $username)
     {
@@ -16,24 +16,32 @@ class User extends Model{
         return $this->queryModel("SELECT * FROM {$this->table} WHERE email= ?", [$email], true);
     }
 
-    public function createUser(array $data)
+    public function createNewUser(array $data)
     {
-        // $db = new Model();
-        // var_dump($data);
-        // die();
-        // $query = "INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (:nomUtilisateur, :email, :mdp)";
-        // $stmt = $db->prepare($query);
+        $param = [
+            $data['nom_utilisateur'], 
+            $data['email'], 
+            password_hash(
+                $data['mdp'], 
+                PASSWORD_DEFAULT)
+            ];
+        var_dump($param);
+        //die();
+        $this->createUser($param);
+    }
+
+        // $this->$queryModel("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (:nomUtilisateur, :email, :mdp)");
+        // $stmt = $this->$query;
         // $stmt->bindParam(":nomUtilisateur", $data['username']);
         // $stmt->bindParam(":email", $data['email']);
-        // $stmt->bindParam(":mdp", $data['mdp']);
+        // $stmt->bindParam(":mdp", password_hash($data['mdp'], PASSWORD_DEFAULT));
         // if($stmt->execute()){
         //     return true;
         // }else{
         //     return false;
         // }
 
-        // "INSERT INTO articles (titre, chapo, contenu, auteur_id) 
-        // VALUES(:titre, :chapo, :contenu, :date_creation,:auteur_id)";
-    }
+        // return($this->queryModel("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (:nomUtilisateur, :email, :mdp)"));
+    //}
 
 }

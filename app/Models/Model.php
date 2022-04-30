@@ -27,9 +27,6 @@ abstract class Model{
 
     public function create(array $data)
     {
-        // "INSERT INTO articles (titre, chapo, contenu, auteur_id) 
-        // VALUES(:titre, :chapo, :contenu, :date_creation,:auteur_id)";
-
         $firstParethesis = "";
         $secondParenthesis = "";
         $i = 1;
@@ -44,6 +41,13 @@ abstract class Model{
         return($this->queryModel(
             "INSERT INTO {$this->table} ($firstParethesis) 
             VALUES($secondParenthesis)", $data));
+    }
+
+    public function createUser($param)
+    {
+        $stmt = $this->db::getPDO()->prepare("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (?, ?, ?)");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->db]);
+        return $stmt->execute($param);
     }
 
     public function update(int $id, array $data, $updateDate = false)

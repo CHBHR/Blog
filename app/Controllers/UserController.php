@@ -97,7 +97,8 @@ class UserController extends Controller{
                 'mdp' => $_POST['password']
             ];
 
-            $result = $user->create($data);
+            var_dump($data);
+            $result = $user->createNewUser($data);
     
             if ($result) {
                 $_SESSION['auth'] = $user->role;

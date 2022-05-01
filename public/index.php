@@ -39,7 +39,7 @@ $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@
 /**
  * Le téléchargement du pdf
  */
-$router->get('/downloadpdf:file', 'App\downloadpdf');
+$router->get('/downloadpdf', 'App\Controllers\DownloadController@downloadpdf');
 
 try {
     $router->run();

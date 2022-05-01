@@ -25,8 +25,6 @@ class User extends Model{
                 $data['mdp'], 
                 PASSWORD_DEFAULT)
             ];
-        var_dump($param);
-        //die();
         $this->createUser($param);
     }
 

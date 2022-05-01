@@ -36,6 +36,11 @@ $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\ArticleControlle
 $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@edit');
 $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@update');
 
+/**
+ * Le téléchargement du pdf
+ */
+$router->get('/downloadpdf:file', 'App\downloadpdf');
+
 try {
     $router->run();
 } catch (NotFoundException $e) {

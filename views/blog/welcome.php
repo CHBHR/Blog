@@ -30,4 +30,5 @@
     <h3>
         Bientot ici, le téléchargement de mon CV Et la liste de mes skills
     </h3>
+    <a href="/downloadpdf.php?file=CV2020" target="_blank">Download PDF Now</a>
 </div>

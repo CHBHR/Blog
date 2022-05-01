@@ -6,7 +6,7 @@ use DateTime;
 
 class Article extends Model{
 
-    protected $table = 'articles';
+    protected $table = 'article';
 
     public function getFormatedDate($date): string
     {
@@ -29,7 +29,7 @@ class Article extends Model{
     public function getAuthor($id): string
     {
         $db = $this->db::getPDO();
-        $query = "SELECT nom_utilisateur FROM utilisateurs WHERE id = ?";
+        $query = "SELECT nom_utilisateur FROM utilisateur WHERE id = ?";
         $stmt = $db->prepare($query);
         $stmt->execute([$id]);
         $row = $stmt->fetch();

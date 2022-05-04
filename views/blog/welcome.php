@@ -1,3 +1,7 @@
+<?php if(isset($_GET['success'])): ?>
+    <div class="alert alert-success">Vous êtes connecté!</div>
+<?php endif ?>
+
 <h1> Le blog de Chris </h1>
 
 <div class="container">
@@ -26,4 +30,5 @@
     <h3>
         Bientot ici, le téléchargement de mon CV Et la liste de mes skills
     </h3>
+    <a href="/downloadpdf" target="_blank">Download PDF Now</a>
 </div>

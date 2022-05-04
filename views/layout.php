@@ -65,6 +65,7 @@
     <?= $content ?>
 </div>
 
+<div class="mt-4"></div>
 
 <footer class="page-footer font-small bg-secondary mt-auto text-light">
 

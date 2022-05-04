@@ -21,11 +21,6 @@ class Article extends Model{
         return substr($this->contenu, 0, 150) . '...';
     }
 
-    // public function create(array $data)
-    // {
-    //     parent::create($data);
-    // }
-
     public function getAuthor($id): string
     {
         $db = $this->db::getPDO();

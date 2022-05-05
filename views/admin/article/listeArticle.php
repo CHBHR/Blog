@@ -35,6 +35,7 @@
                     <form action="/admin/posts/delete/<?= $post->id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
+                    <a href="/admin/posts/comment/<?= $post->id ?>" class="btn btn-secondary">Commentaires</a>
                 </td>
             </tr>
         

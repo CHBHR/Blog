@@ -17,14 +17,35 @@
 
     <h3>Commentaires</h3>
 
-    <!-- need to check if comments, if not display nothing. If there are, loop through to generate comments -->
+    <?php if (!$params['comment']): ?>
 
-    <div class="card bg-light mb-3" >
+    <div class="card bg-light">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <small>Autheur et date de création</small>
+            <p class="card-text">Il n'y a aucun commentaire pour cet article</p>
         </div>
     </div>
+
+    <?php elseif($params['comment']): ?>
+        <?php $nb = 0; ?>
+        <?php foreach($params['comment'] as $com): ?>
+            <?php if($com->status === 'valdated'): ?>
+                <?php $nb++ ;?>
+                <div class="card bg-light mb-3" >
+                    <div class="card-body">
+                        <p class="card-text"><?= $com->contenu ?></p>
+                        <small>Posté par <?= $com->getAuthor($com->id_auteur) ?> le <?= $com->getFormatedDate($com->date_creation) ?></small>
+                    </div>
+                </div>
+            <?php endif ?>
+        <?php endforeach ?>
+        <?php if($nb == 0 ): ?>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <p class="card-text">Il n'y a aucun commentaire pour cet article</p>
+                </div>
+            </div>
+        <?php endif ?>
+    <?php endif ?>
 
 </div>
 

@@ -28,7 +28,6 @@
         </div>
 
     <?php elseif($params['commentaires']): ?>
-        <!-- <?= var_dump($params['commentaires']) ?> -->
         <?php foreach($params['commentaires'] as $com): ?>
 
         <div class="card bg-light mb-3" >
@@ -39,7 +38,7 @@
                     Date publication : <?= $com->getFormatedDate($com->date_creation) ?></br>
                     Status : <?= $com->status ?>
                 </p>
-                <a href="#" class="btn btn-success">Valider</a>
+                <a href="/admin/posts/comment/validate/<?= $com->id?>" class="btn btn-success">Valider</a>
                 <a href="#" class="btn btn-danger">Supprimer</a>
             </div>
         </div>

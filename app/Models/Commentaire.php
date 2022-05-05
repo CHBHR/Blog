@@ -28,11 +28,6 @@ class Commentaire extends Model{
         return (new DateTime($date))->format('d/m/Y à H:i');
     }
 
-    public function getExcerpt(): string
-    {
-        return substr($this->contenu, 0, 150) . '...';
-    }
-
     public function getAuthor($id): string
     {
         $db = $this->db::getPDO();
@@ -41,6 +36,11 @@ class Commentaire extends Model{
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         return ($row->nom_utilisateur);
+    }
+
+    public function validate(int $id)
+    {
+        return $this->queryModel("UPDATE {$this->table} SET status = 'validated' WHERE id = ?", [$id], false);
     }
 
 }

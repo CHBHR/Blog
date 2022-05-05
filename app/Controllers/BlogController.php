@@ -26,7 +26,10 @@ class BlogController extends Controller {
         $post = new Article($this->getDB());
         $post = $post->findById($id);
 
-        return $this->view('blog.show', compact('post'));
+        $comment = new Commentaire($this->getDB());
+        $comment = $comment->getCommentsFromArticle($id);
+
+        return $this->view('blog.show', compact('post','comment'));
     }
 
     public function submitComment()

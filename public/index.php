@@ -40,6 +40,7 @@ $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\ArticleControlle
 $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@edit');
 $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@update');
 $router->get('/admin/posts/comment/:id', 'App\Controllers\Admin\CommentaireController@listeCommentaire');
+$router->get('/admin/posts/comment/validate/:id', 'App\Controllers\Admin\CommentaireController@validerCommentaire');
 
 /**
  * Le téléchargement du pdf

@@ -19,4 +19,19 @@ class CommentaireController extends Controller{
         return $this->view('admin.article.listeCommentaire', compact('article', 'commentaires'));
     }
 
+    public function validerCommentaire($commentaireId)
+    {
+        $this->isAdmin();
+
+        $commentaire = new Commentaire($this->getDB());
+
+        $result = $commentaire->validate($commentaireId);
+
+        if ($result) {
+            return header('Location: /admin/posts');
+        } else {
+            return header('Location: /admin/posts');
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 <?php if(isset($_GET['success'])): ?>
     <div class="alert alert-success">Vous êtes connecté!</div>
+<?php elseif(isset($_GET['submit'])): ?>
+    <div class="alert alert-success">Votre commentaire a été envoyer pour validation</div>
 <?php endif ?>
 
 <h1> Le blog de Chris </h1>

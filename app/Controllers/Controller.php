@@ -39,4 +39,13 @@ abstract class Controller {
            return  header('Location: /login');
         }
     }
+
+    protected function isConnected()
+    {
+        if (isset($_SESSION['auth'])) {
+            return true;
+        } else {
+           return  header('Location: /login');
+        }
+    }
 }

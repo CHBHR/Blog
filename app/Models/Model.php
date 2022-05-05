@@ -50,6 +50,13 @@ abstract class Model{
         return $stmt->execute($param);
     }
 
+    public function createComment($param)
+    {
+        $stmt = $this->db::getPDO()->prepare("INSERT INTO commentaire (contenu ,id_auteur, id_article ) VALUES (?, ?, ?)");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->db]);
+        return $stmt->execute($param);
+    }
+
     public function update(int $id, array $data, $updateDate = false)
     {
         $sqlRequestPart = "";

@@ -16,6 +16,10 @@ $router = new Router($_GET['url']);
 $router->get('/', 'App\Controllers\BlogController@welcome');
 $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/:id', 'App\Controllers\BlogController@show');
+/**
+ * Les routes commentaire
+ */
+$router->post('/posts/submitComment', 'App\Controllers\BlogController@submitComment');
 
 /**
  * Les routes utilisateur

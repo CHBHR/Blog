@@ -43,10 +43,12 @@ class UserController extends Controller{
              * On stock la valeur du role dans la session
              */
             $_SESSION['auth'] = $user->role;
+            $_SESSION['id'] = $user->id;
             return header('Location: /admin/posts?success=true');
 
         } elseif (password_verify($_POST['password'], $user->mdp)) {
             $_SESSION['auth'] = $user->role;
+            $_SESSION['id'] = $user->id;
             return header('Location: /?success=true');
             
         } else {
@@ -102,6 +104,7 @@ class UserController extends Controller{
     
             if ($result) {
                 $_SESSION['auth'] = $user->role;
+                $_SESSION['id'] = $user->id;
                 return header('Location: /');
             } else {
                 return header('Location: /signup');

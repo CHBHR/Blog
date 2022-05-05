@@ -20,7 +20,7 @@ class Commentaire extends Model{
 
     public function getCommentsFromArticle($articleId)
     {
-        return $this->queryModel("SELECT * FROM {$this->table} WHERE id_article = ?", [$articleId]);
+        return $this->queryModel("SELECT * FROM {$this->table} WHERE id_article = ? ORDER BY date_creation DESC", [$articleId]);
     }
 
     public function getFormatedDate($date): string

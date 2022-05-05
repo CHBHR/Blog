@@ -38,8 +38,12 @@
                     Date publication : <?= $com->getFormatedDate($com->date_creation) ?></br>
                     Status : <?= $com->status ?>
                 </p>
-                <a href="/admin/posts/comment/validate/<?= $com->id?>" class="btn btn-success">Valider</a>
-                <a href="#" class="btn btn-danger">Supprimer</a>
+                <?php if($com->status != 'validated'): ?>
+                    <a href="/admin/posts/comment/validate/<?= $com->id?>" class="btn btn-success">Valider</a>
+                <?php endif ?>
+                <form action="/admin/posts/comment/delete/<?= $com->id ?>" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
             </div>
         </div>
 

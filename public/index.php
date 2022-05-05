@@ -41,6 +41,7 @@ $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@e
 $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@update');
 $router->get('/admin/posts/comment/:id', 'App\Controllers\Admin\CommentaireController@listeCommentaire');
 $router->get('/admin/posts/comment/validate/:id', 'App\Controllers\Admin\CommentaireController@validerCommentaire');
+$router->post('/admin/posts/comment/delete/:id', 'App\Controllers\Admin\CommentaireController@deleteCommentaire');
 
 /**
  * Le téléchargement du pdf

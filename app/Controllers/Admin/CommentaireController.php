@@ -34,4 +34,16 @@ class CommentaireController extends Controller{
         }
     }
 
+    public function deleteCommentaire($id)
+    {
+        $this->isAdmin();
+    
+        $commentaire = new Commentaire($this->getDB());
+        $result = $commentaire->destroy($id);
+
+        if ($result) {
+            return header('Location: /admin/posts');
+        }
+    }
+
 }

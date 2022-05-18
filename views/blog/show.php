@@ -28,7 +28,7 @@
     <?php elseif($params['comment']): ?>
         <?php $nb = 0; ?>
         <?php foreach($params['comment'] as $com): ?>
-            <?php if($com->status === 'valdated'): ?>
+            <?php if($com->status === 'validated'): ?>
                 <?php $nb++ ;?>
                 <div class="card bg-light mb-3" >
                     <div class="card-body">

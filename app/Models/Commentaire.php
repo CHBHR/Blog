@@ -15,7 +15,7 @@ class Commentaire extends Model{
             $data['id_article']
         ];
 
-        $this->createComment($param);
+        return $this->createComment($param);
     }
 
     public function getCommentsFromArticle($articleId)

@@ -56,7 +56,7 @@ class BlogController extends Controller {
         if ($result) {
             return header('Location: /?submit=true');
         } else {
-            return header('/posts/:id');
+            return header('Location: /posts/'. $articleId);
         }
     }
 }

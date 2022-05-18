@@ -26,7 +26,10 @@ class BlogController extends Controller {
         $post = new Article($this->getDB());
         $post = $post->findById($id);
 
-        return $this->view('blog.show', compact('post'));
+        $comment = new Commentaire($this->getDB());
+        $comment = $comment->getCommentsFromArticle($id);
+
+        return $this->view('blog.show', compact('post','comment'));
     }
 
     public function submitComment()
@@ -53,7 +56,7 @@ class BlogController extends Controller {
         if ($result) {
             return header('Location: /?submit=true');
         } else {
-            return header('/posts/:id');
+            return header('Location: /posts/'. $articleId);
         }
     }
 }

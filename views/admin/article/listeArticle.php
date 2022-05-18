@@ -12,10 +12,10 @@
         <th scope="col">#</th>
         <th scope="col">Titre</th>
         <th scope="col">Chapo</th>
-        <!-- <th scope="col">Contenu</th> -->
         <th scope="col">Date création</th>
         <th scope="col">Date mise à jour</th>
         <th scope="col">Auteur</th>
+        <th scope="col">Commentaires en attente</th>
         <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -30,11 +30,13 @@
                 <td><?= $post->getFormatedDate($post->date_creation) ?></td>
                 <td><?= $post->getFormatedDate($post->date_mise_a_jour) ?></td>
                 <td><?= $post->getAuthor($post->auteur_id) ?></td>
+                <td><?= $post->getPendingComment($post->id) ?></td>
                 <td>
                     <a href="/admin/posts/edit/<?= $post->id ?>" class="btn btn-warning">Modifier</a>
                     <form action="/admin/posts/delete/<?= $post->id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
+                    <a href="/admin/posts/comment/<?= $post->id ?>" class="btn btn-secondary">Commentaires</a>
                 </td>
             </tr>
         

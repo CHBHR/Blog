@@ -30,4 +30,15 @@ class Article extends Model{
         $row = $stmt->fetch();
         return ($row->nom_utilisateur);
     }
+
+    public function getPendingComment($id)
+    {
+        $db = $this->db::getPDO();
+        $query = "SELECT * FROM commentaire WHERE id_article = ? AND status = 'pending'";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$id]);
+        $row = $stmt->fetch();
+        $row = $stmt->rowCount();
+        return ($row);
+    }
 }

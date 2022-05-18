@@ -28,18 +28,4 @@ class User extends Model{
         $this->createUser($param);
     }
 
-        // $this->$queryModel("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (:nomUtilisateur, :email, :mdp)");
-        // $stmt = $this->$query;
-        // $stmt->bindParam(":nomUtilisateur", $data['username']);
-        // $stmt->bindParam(":email", $data['email']);
-        // $stmt->bindParam(":mdp", password_hash($data['mdp'], PASSWORD_DEFAULT));
-        // if($stmt->execute()){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
-
-        // return($this->queryModel("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (:nomUtilisateur, :email, :mdp)"));
-    //}
-
 }

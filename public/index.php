@@ -39,6 +39,9 @@ $router->post('/admin/posts/create', 'App\Controllers\Admin\ArticleController@cr
 $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\ArticleController@destroy');
 $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@edit');
 $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@update');
+$router->get('/admin/posts/comment/:id', 'App\Controllers\Admin\CommentaireController@listeCommentaire');
+$router->get('/admin/posts/comment/validate/:id', 'App\Controllers\Admin\CommentaireController@validerCommentaire');
+$router->post('/admin/posts/comment/delete/:id', 'App\Controllers\Admin\CommentaireController@deleteCommentaire');
 
 /**
  * Le téléchargement du pdf

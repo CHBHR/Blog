@@ -20,6 +20,11 @@ abstract class Model{
         return $this->queryModel("SELECT * FROM {$this->table} ORDER BY date_creation DESC");
     }
 
+    public function getFirstThree(): array
+    {
+        return $this->queryModel("SELECT * FROM {$this->table} ORDER BY date_creation DESC LIMIT 3");
+    }
+
     public function findById(int $id): Model
     {
         return $this->queryModel("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);

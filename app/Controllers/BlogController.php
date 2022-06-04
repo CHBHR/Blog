@@ -10,7 +10,10 @@ class BlogController extends Controller {
 
     public function welcome()
     {
-        return $this->view('blog.welcome');
+        $post = new Article($this->getDB());
+        $posts = $post->getFirstThree();
+
+        return $this->view('blog.welcome', compact('posts'));
     }
 
     public function index()

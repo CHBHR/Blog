@@ -16,9 +16,9 @@ class Article extends Model{
     /**
      * retourne une chaine texte tronquée
      */
-    public function getExcerpt(): string
+    public function getExcerpt($content): string
     {
-        return substr($this->contenu, 0, 150) . '...';
+        return substr($content, 0, 150) . '...';
     }
 
     public function getAuthor($id): string

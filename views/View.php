@@ -50,10 +50,7 @@ class View
             ob_start();
             require $file;
             return ob_get_clean();
-        }
-        else {
-            throw new \Exception("fichier ".$file." introuvable");
-        }
+        } throw new \Exception("fichier ".$file." introuvable");
     }
 
 }

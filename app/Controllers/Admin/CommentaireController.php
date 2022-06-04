@@ -29,9 +29,7 @@ class CommentaireController extends Controller{
 
         if ($result) {
             return header('Location: /admin/posts');
-        } else {
-            return header('Location: /admin/posts');
-        }
+        } return header('Location: /admin/posts');
     }
 
     public function deleteCommentaire($id)

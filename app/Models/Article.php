@@ -21,21 +21,21 @@ class Article extends Model{
         return substr($content, 0, 150) . '...';
     }
 
-    public function getAuthor($id): string
+    public function getAuthor($authorId): string
     {
-        $db = $this->db::getPDO();
+        $database = $this->database::getPDO();
         $query = "SELECT nom_utilisateur FROM utilisateur WHERE id = ?";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$id]);
+        $stmt = $database->prepare($query);
+        $stmt->execute([$authorId]);
         $row = $stmt->fetch();
         return ($row->nom_utilisateur);
     }
 
     public function getPendingComment($id)
     {
-        $db = $this->db::getPDO();
+        $database = $this->database::getPDO();
         $query = "SELECT * FROM commentaire WHERE id_article = ? AND status = 'pending'";
-        $stmt = $db->prepare($query);
+        $stmt = $database->prepare($query);
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         $row = $stmt->rowCount();

@@ -24,13 +24,13 @@ class BlogController extends Controller {
         return $this->view('blog.index', compact('posts'));
     }
 
-    public function show(int $id)
+    public function show(int $articleId)
     {
         $post = new Article($this->getDB());
-        $post = $post->findById($id);
+        $post = $post->findById($articleId);
 
         $comment = new Commentaire($this->getDB());
-        $comment = $comment->getCommentsFromArticle($id);
+        $comment = $comment->getCommentsFromArticle($articleId);
 
         return $this->view('blog.show', compact('post','comment'));
     }
@@ -49,7 +49,6 @@ class BlogController extends Controller {
         if ($errors) {
             $_SESSION['errors'][] = $errors;
             header('Location: /posts/' . $articleId);
-            exit;
         }
 
         $commentaire = new Commentaire($this->getDB());
@@ -58,8 +57,6 @@ class BlogController extends Controller {
 
         if ($result) {
             return header('Location: /?submit=true');
-        } else {
-            return header('Location: /posts/'. $articleId);
-        }
+        }  return header('Location: /posts/'. $articleId);
     }
 }

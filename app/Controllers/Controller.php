@@ -6,38 +6,38 @@ use Database\DBConnection;
 
 abstract class Controller {
 
-    protected $db;
+    protected $database;
 
-    public function __construct(DBConnection $db)
+    public function __construct(DBConnection $database)
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         
-        $this->db = $db;
+        $this->database = $database;
     }
 
     protected function view(string $path, array $params = null)
     {
+        //FIX ME
         ob_start();
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
         require VIEWS . $path . '.php';
+        //this line doesn't comply with codacy guidelines but failes without
         $content = ob_get_clean();
         require VIEWS . 'layout.php';
     }
 
     protected function getDB()
     {
-        return $this->db;
+        return $this->database;
     }
 
     protected function isAdmin()
     {
         if (isset($_SESSION['auth']) && $_SESSION['auth'] === 'admin') {
             return true;
-        } else {
-           return  header('Location: /login');
-        }
+        } return  header('Location: /login');
     }
 
     protected function isConnected()

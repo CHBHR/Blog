@@ -32,7 +32,6 @@ class UserController extends Controller{
         if ($errors) {
             $_SESSION['errors'][] = $errors;
             header('Location: /login');
-            exit;
         }
 
         $user = (new User($this->getDB()))->getByUserName($_POST['username']);
@@ -49,13 +48,10 @@ class UserController extends Controller{
         } elseif (password_verify($_POST['password'], $user->mdp)) {
             $_SESSION['auth'] = $user->role;
             $_SESSION['id'] = $user->id;
-            return header('Location: /?success=true');
-            
-        } else {
-            $errors['problem'][] = "il y a eu un probleme";
-            $_SESSION['errors'][] = $errors;
-            return header('Location: /login');
-        }
+            return header('Location: /?success=true');   
+        } $errors['problem'][] = "il y a eu un probleme";
+        $_SESSION['errors'][] = $errors;
+        return header('Location: /login');
     }
 
     public function logout()

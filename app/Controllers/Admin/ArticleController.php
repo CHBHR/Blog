@@ -39,9 +39,7 @@ class ArticleController extends Controller{
 
         if ($result) {
             return header('Location: /admin/posts');
-        } else {
-            return header('Location: /admin/posts');
-        }
+        } return header('Location: /admin/posts');
     }
 
     public function edit(int $id)
@@ -66,12 +64,12 @@ class ArticleController extends Controller{
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(int $articleId)
     {
         $this->isAdmin();
 
         $article = new Article($this->getDB());
-        $result = $article->destroy($id);
+        $result = $article->destroy($articleId);
 
         if ($result) {
             return header('Location: /admin/posts');

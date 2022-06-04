@@ -28,12 +28,12 @@ class Commentaire extends Model{
         return (new DateTime($date))->format('d/m/Y à H:i');
     }
 
-    public function getAuthor($id): string
+    public function getAuthor($authorId): string
     {
-        $db = $this->db::getPDO();
+        $database = $this->database::getPDO();
         $query = "SELECT nom_utilisateur FROM utilisateur WHERE id = ?";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$id]);
+        $stmt = $database->prepare($query);
+        $stmt->execute([$authorId]);
         $row = $stmt->fetch();
         return ($row->nom_utilisateur);
     }

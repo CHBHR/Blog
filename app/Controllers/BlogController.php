@@ -40,23 +40,24 @@ class BlogController extends Controller {
         $this->isConnected();
 
         $articleId = $_POST['id_article'];
+        $postData = $_POST;
 
-        $validator = new Validator($_POST);
+        $validator = new Validator($postData);
         $errors = $validator->validate([
             'contenu' => ['required', 'min:16']
         ]);
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /posts/' . $articleId);
+            $this->redirect('Location: /posts/' . $articleId);
         }
 
         $commentaire = new Commentaire($this->getDB());
 
-        $result = $commentaire->submitComment($_POST);
+        $result = $commentaire->submitComment($postData);
 
         if ($result) {
-            return header('Location: /?submit=true');
-        }  return header('Location: /posts/'. $articleId);
+            return $this->redirect('Location: /?submit=true');
+        }  return $this->redirect('Location: /posts/'. $articleId);
     }
 }

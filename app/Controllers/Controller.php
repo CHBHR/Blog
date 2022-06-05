@@ -37,7 +37,7 @@ abstract class Controller {
     {
         if (isset($_SESSION['auth']) && $_SESSION['auth'] === 'admin') {
             return true;
-        } return  header('Location: /login');
+        } return  $this->redirect('Location: /login');
     }
 
     protected function isConnected()
@@ -45,7 +45,12 @@ abstract class Controller {
         if (isset($_SESSION['auth'])) {
             return true;
         } else {
-           return  header('Location: /login');
+           return  $this->redirect('Location: /login');
         }
+    }
+
+    public function redirect($url)
+    {
+        return header($url);
     }
 }

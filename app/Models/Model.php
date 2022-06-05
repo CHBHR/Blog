@@ -50,15 +50,15 @@ abstract class Model{
 
     public function createUser($param)
     {
-        $stmt = $this->db::getPDO()->prepare("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (?, ?, ?)");
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->db]);
+        $stmt = $this->database::getPDO()->prepare("INSERT INTO utilisateur (nom_utilisateur, email, mdp) VALUES (?, ?, ?)");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->database]);
         return $stmt->execute($param);
     }
 
     public function createComment($param)
     {
-        $stmt = $this->db::getPDO()->prepare("INSERT INTO commentaire (contenu ,id_auteur, id_article ) VALUES (?, ?, ?)");
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->db]);
+        $stmt = $this->database::getPDO()->prepare("INSERT INTO commentaire (contenu ,id_auteur, id_article ) VALUES (?, ?, ?)");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->database]);
         return $stmt->execute($param);
     }
 

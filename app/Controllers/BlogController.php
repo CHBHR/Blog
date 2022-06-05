@@ -24,13 +24,13 @@ class BlogController extends Controller {
         return $this->view('blog.index', compact('posts'));
     }
 
-    public function show(int $id)
+    public function show(int $articleId)
     {
         $post = new Article($this->getDB());
-        $post = $post->findById($id);
+        $post = $post->findById($articleId);
 
         $comment = new Commentaire($this->getDB());
-        $comment = $comment->getCommentsFromArticle($id);
+        $comment = $comment->getCommentsFromArticle($articleId);
 
         return $this->view('blog.show', compact('post','comment'));
     }
@@ -40,26 +40,24 @@ class BlogController extends Controller {
         $this->isConnected();
 
         $articleId = $_POST['id_article'];
+        $postData = $_POST;
 
-        $validator = new Validator($_POST);
+        $validator = new Validator($postData);
         $errors = $validator->validate([
             'contenu' => ['required', 'min:16']
         ]);
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /posts/' . $articleId);
-            exit;
+            $this->redirect('Location: /posts/' . $articleId);
         }
 
         $commentaire = new Commentaire($this->getDB());
 
-        $result = $commentaire->submitComment($_POST);
+        $result = $commentaire->submitComment($postData);
 
         if ($result) {
-            return header('Location: /?submit=true');
-        } else {
-            return header('Location: /posts/'. $articleId);
-        }
+            return $this->redirect('Location: /?submit=true');
+        }  return $this->redirect('Location: /posts/'. $articleId);
     }
 }

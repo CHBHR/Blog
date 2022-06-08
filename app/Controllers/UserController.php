@@ -31,7 +31,8 @@ class UserController extends Controller{
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            $this->redirect('login');
+            exit;
         }
 
         $user = (new User($this->getDB()))->getByUserName($_POST['username']);
@@ -43,22 +44,25 @@ class UserController extends Controller{
              */
             $_SESSION['auth'] = $user->role;
             $_SESSION['id'] = $user->id;
-            return $this->redirect('Location: /admin/posts?success=true');
+            return $this->redirect('admin/posts?success=true');
 
         } elseif (password_verify($_POST['password'], $user->mdp)) {
             $_SESSION['auth'] = $user->role;
             $_SESSION['id'] = $user->id;
-            return header('Location: /?success=true');   
-        } $errors['problem'][] = "il y a eu un probleme";
-        $_SESSION['errors'][] = $errors;
-        return $this->redirect('Location: /login');
+            return $this->redirect('?success=true');
+            
+        } else {
+            $errors['problem'][] = "il y a eu un probleme";
+            $_SESSION['errors'][] = $errors;
+            return $this->redirect('login');
+        }
     }
 
     public function logout()
     {
         session_destroy();
 
-        return header('Location: /');
+        return $this->redirect('');
     }
 
     public function signin()
@@ -77,12 +81,12 @@ class UserController extends Controller{
         if ($user->getByUserName($_POST['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
             $_SESSION['errors'][] = $errors;
-            header('Location: /signup');
+            $this->redirect('signup');
             exit;
         } elseif ($user->getByEmail($_POST['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
             $_SESSION['errors'][] = $errors;
-            header('Location: /signup');
+            $this->redirect('signup');
             exit;
         } else {
 
@@ -95,20 +99,21 @@ class UserController extends Controller{
                 'mdp' => $_POST['password']
             ];
 
+            //var_dump($data);
             $result = $user->createNewUser($data);
     
             if ($result) {
                 $_SESSION['auth'] = $user->role;
                 $_SESSION['id'] = $user->id;
-                return header('Location: /');
+                return $this->redirect('');
             } else {
-                return header('Location: /signup');
+                return $this->redirect('signup');
             }
         }
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /signup');
+            $this->redirect('signup');
             exit;
         }
 

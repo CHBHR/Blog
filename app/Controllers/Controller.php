@@ -13,10 +13,14 @@ abstract class Controller {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+        //setter en reference
         
         $this->database = $database;
     }
 
+    /**
+     * @SuppressWarnings("unused")
+     */
     protected function view(string $path, array $params = null)
     {
         //FIX ME
@@ -26,6 +30,7 @@ abstract class Controller {
         //this line doesn't comply with codacy guidelines but failes without
         $content = ob_get_clean();
         require VIEWS . 'layout.php';
+        //ajouter compact directement de params if not null
     }
 
     protected function getDB()
@@ -51,6 +56,24 @@ abstract class Controller {
 
     public function redirect($url)
     {
-        return header($url);
+        return header('Location: /'.$url);
     }
+
+    // public function convertSuperGlobalPost($global)
+    // {
+    //     //transform array superglobal to object
+    //     //return array
+
+    //     $object = new stdClass();
+    //     foreach ($array as $key => $value)
+    //         {
+    //             $object->$key = $value;
+    //         }
+    //     return $object;
+    // }
+
+    // public function sanitize(array $inputs, array $fields) : array
+    // {
+
+    // }
 }

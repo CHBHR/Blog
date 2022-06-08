@@ -38,8 +38,8 @@ class ArticleController extends Controller{
         $result = $article->create($_POST);
 
         if ($result) {
-            return header('Location: /admin/posts');
-        } return header('Location: /admin/posts');
+            return $this->redirect('admin/posts');
+        } return $this->redirect('admin/posts');
     }
 
     public function edit(int $id)
@@ -60,7 +60,7 @@ class ArticleController extends Controller{
         $result = $article->update($id, $_POST, true);
 
         if ($result) {
-            return header('Location: /admin/posts');
+            return $this->redirect('admin/posts');
         }
     }
 
@@ -72,7 +72,7 @@ class ArticleController extends Controller{
         $result = $article->destroy($articleId);
 
         if ($result) {
-            return header('Location: /admin/posts');
+            return $this->redirect('admin/posts');
         }
     }
 }

@@ -76,4 +76,25 @@ abstract class Controller {
     // {
 
     // }
+    public function sanitize($dataPost)
+    {
+        foreach($dataPost as $key=>$value){
+            switch($key) {
+                case $key === 'username':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    break;
+                case $key === 'email':
+                    $value = filter_var($value, FILTER_SANITIZE_EMAIL);
+                    break;
+                case $key === 'password':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    break;
+                case $key === 'id_article':
+                    $value = filter_var($value, FILTER_VALIDATE_INT);
+                    break;
+            }
+        }
+        return $dataPost;
+    }
+
 }

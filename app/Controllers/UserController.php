@@ -19,10 +19,12 @@ class UserController extends Controller{
 
     public function loginPost()
     {
+        $dataPost = $this->sanitize($_POST);
+
         /**
          * Ajouter des $rules en plus pour les différents champs
          */
-        $validator = new Validator($_POST);
+        $validator = new Validator($dataPost);
         $errors = $validator->validate([
             'username' => ['required', 'min:3'],
             'email' => ['required'],
@@ -35,9 +37,9 @@ class UserController extends Controller{
             exit;
         }
 
-        $user = (new User($this->getDB()))->getByUserName($_POST['username']);
+        $user = (new User($this->getDB()))->getByUserName($dataPost['username']);
 
-        if (password_verify($_POST['password'], $user->mdp) && $user->role === 'admin') {
+        if (password_verify($dataPost['password'], $user->mdp) && $user->role === 'admin') {
 
             /**
              * On stock la valeur du role dans la session
@@ -46,7 +48,7 @@ class UserController extends Controller{
             $_SESSION['id'] = $user->id;
             return $this->redirect('admin/posts?success=true');
 
-        } elseif (password_verify($_POST['password'], $user->mdp)) {
+        } elseif (password_verify($dataPost['password'], $user->mdp)) {
             $_SESSION['auth'] = $user->role;
             $_SESSION['id'] = $user->id;
             return $this->redirect('?success=true');
@@ -67,7 +69,9 @@ class UserController extends Controller{
 
     public function signin()
     {
-        $validator = new Validator($_POST);
+        $dataPost = $this->sanitize($_POST);
+
+        $validator = new Validator($dataPost);
 
         $errors = $validator->validate([
             'username' => ['required', 'min:3', 'unused'],
@@ -78,12 +82,12 @@ class UserController extends Controller{
 
         $user = new User($this->getDB());
 
-        if ($user->getByUserName($_POST['username'])) {
+        if ($user->getByUserName($dataPost['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
             $_SESSION['errors'][] = $errors;
             $this->redirect('signup');
             exit;
-        } elseif ($user->getByEmail($_POST['email'])) {
+        } elseif ($user->getByEmail($dataPost['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
             $_SESSION['errors'][] = $errors;
             $this->redirect('signup');
@@ -94,12 +98,11 @@ class UserController extends Controller{
             
             //implement createUser
             $data = [
-                'nom_utilisateur' => $_POST['username'],
-                'email'=> $_POST['email'],
-                'mdp' => $_POST['password']
+                'nom_utilisateur' => $dataPost['username'],
+                'email'=> $dataPost['email'],
+                'mdp' => $dataPost['password']
             ];
 
-            //var_dump($data);
             $result = $user->createNewUser($data);
     
             if ($result) {

@@ -39,11 +39,11 @@ class BlogController extends Controller {
     {
         $this->isConnected();
 
-        $articleId = filter_var($_POST['id_article'], FILTER_VALIDATE_INT);
+        $dataPost = $this->sanitize($_POST);
 
-        $postData = filter_var($_POST, INPUT_POST);
+        $articleId = $dataPost['id_article'];
 
-        $validator = new Validator($postData);
+        $validator = new Validator($dataPost);
         $errors = $validator->validate([
             'contenu' => ['required', 'min:16']
         ]);
@@ -55,7 +55,7 @@ class BlogController extends Controller {
 
         $commentaire = new Commentaire($this->getDB());
 
-        $result = $commentaire->submitComment($postData);
+        $result = $commentaire->submitComment($dataPost);
 
         if ($result) {
             return $this->redirect('?submit=true');

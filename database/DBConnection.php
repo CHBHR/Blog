@@ -23,6 +23,5 @@ class DBConnection
             return self::$pdo;
         }
         return self::$pdo;
-        //return self::$pdo ?? self::setPDO();
     }
 }

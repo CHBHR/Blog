@@ -64,6 +64,7 @@ abstract class Controller {
     {
         foreach($dataPost as $key=>$value){
             switch($key) {
+                //user
                 case $key === 'username':
                     $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     break;
@@ -76,6 +77,7 @@ abstract class Controller {
                 case $key === 'id_article':
                     $value = filter_var($value, FILTER_VALIDATE_INT);
                     break;
+                //article and comment
                 case $key === 'titre':
                     $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     break;

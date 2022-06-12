@@ -41,6 +41,7 @@ class BlogController extends Controller {
         $this->isConnected();
 
         $dataPost = $this->sanitize($_POST);
+        // $dataPost = filter_input(INPUT_POST,)
 
         $articleId = $dataPost['id_article'];
 

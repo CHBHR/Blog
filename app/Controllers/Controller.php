@@ -31,6 +31,7 @@ abstract class Controller {
         $content = ob_get_clean();
         require VIEWS . 'layout.php';
         //ajouter compact directement de params if not null
+        // ['posts'=>$posts->getFirstThree()] in Blogcontroller
     }
 
     protected function getDB()
@@ -59,23 +60,6 @@ abstract class Controller {
         return header('Location: /'.$url);
     }
 
-    // public function convertSuperGlobalPost($global)
-    // {
-    //     //transform array superglobal to object
-    //     //return array
-
-    //     $object = new stdClass();
-    //     foreach ($array as $key => $value)
-    //         {
-    //             $object->$key = $value;
-    //         }
-    //     return $object;
-    // }
-
-    // public function sanitize(array $inputs, array $fields) : array
-    // {
-
-    // }
     public function sanitize($dataPost)
     {
         foreach($dataPost as $key=>$value){

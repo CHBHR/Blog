@@ -21,6 +21,8 @@ class UserController extends Controller{
     {
         $dataPost = $this->sanitize($_POST);
 
+        $session = $_SESSION;
+
         /**
          * Ajouter des $rules en plus pour les différents champs
          */
@@ -32,7 +34,7 @@ class UserController extends Controller{
         ]);
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('login');
             exit;
         }
@@ -44,18 +46,18 @@ class UserController extends Controller{
             /**
              * On stock la valeur du role dans la session
              */
-            $_SESSION['auth'] = $user->role;
-            $_SESSION['id'] = $user->id;
+            $session['auth'] = $user->role;
+            $session['id'] = $user->id;
             return $this->redirect('admin/posts?success=true');
 
         } elseif (password_verify($dataPost['password'], $user->mdp)) {
-            $_SESSION['auth'] = $user->role;
-            $_SESSION['id'] = $user->id;
+            $session['auth'] = $user->role;
+            $session['id'] = $user->id;
             return $this->redirect('?success=true');
             
         } else {
             $errors['problem'][] = "il y a eu un probleme";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             return $this->redirect('login');
         }
     }
@@ -71,6 +73,8 @@ class UserController extends Controller{
     {
         $dataPost = $this->sanitize($_POST);
 
+        $session = $_SESSION;
+
         $validator = new Validator($dataPost);
 
         $errors = $validator->validate([
@@ -84,14 +88,12 @@ class UserController extends Controller{
 
         if ($user->getByUserName($dataPost['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
-            exit;
         } elseif ($user->getByEmail($dataPost['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
-            exit;
         } else {
 
             $user = new User($this->getDB());
@@ -106,8 +108,8 @@ class UserController extends Controller{
             $result = $user->createNewUser($data);
     
             if ($result) {
-                $_SESSION['auth'] = $user->role;
-                $_SESSION['id'] = $user->id;
+                $session['auth'] = $user->role;
+                $session['id'] = $user->id;
                 return $this->redirect('');
             } else {
                 return $this->redirect('signup');
@@ -115,9 +117,8 @@ class UserController extends Controller{
         }
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
-            exit;
         }
 
     }

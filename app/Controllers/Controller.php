@@ -43,7 +43,7 @@ abstract class Controller {
     {
         if (isset($_SESSION['auth']) && $_SESSION['auth'] === 'admin') {
             return true;
-        } return  $this->redirect('Location: /login');
+        } return  $this->redirect('login');
     }
 
     protected function isConnected()
@@ -51,7 +51,7 @@ abstract class Controller {
         if (isset($_SESSION['auth'])) {
             return true;
         } else {
-           return  $this->redirect('Location: /login');
+           return  $this->redirect('login');
         }
     }
 
@@ -75,6 +75,15 @@ abstract class Controller {
                     break;
                 case $key === 'id_article':
                     $value = filter_var($value, FILTER_VALIDATE_INT);
+                    break;
+                case $key === 'titre':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    break;
+                case $key === 'chapo':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    break;
+                case $key === 'contenu':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     break;
             }
         }

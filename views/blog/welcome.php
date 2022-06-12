@@ -28,11 +28,11 @@
         <?php foreach($params['posts'] as $post): ?>
             <div class="card mb-3">
                 <div class="card-body">
-                    <h2><?= $post->titre ?></h2>
-                    <small class="badge bg-secondary"><?= $post->getFormatedDate($post->date_creation) ?></small>
-                    <p><?= $post->getExcerpt($post->chapo) ?></p>
-                    <p>Ecrit par <?= $post->getAuthor($post->auteur_id) ?></p>
-                    <a href="/posts/<?= $post->id ?>" class="btn btn-primary">Lire plus</a>
+                    <h2><?= _($post->titre) ?></h2>
+                    <small class="badge bg-secondary"><?= _($post->getFormatedDate($post->date_creation)) ?></small>
+                    <p><?= _($post->getExcerpt($post->chapo)) ?></p>
+                    <p>Ecrit par <?= -($post->getAuthor($post->auteur_id)) ?></p>
+                    <a href="/posts/<?= _($post->id) ?>" class="btn btn-primary">Lire plus</a>
                 </div>
             </div>
         <?php endforeach ?>

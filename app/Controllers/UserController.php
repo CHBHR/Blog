@@ -19,10 +19,14 @@ class UserController extends Controller{
 
     public function loginPost()
     {
+        $dataPost = $this->sanitize($_POST);
+
+        $session = $_SESSION;
+
         /**
          * Ajouter des $rules en plus pour les différents champs
          */
-        $validator = new Validator($_POST);
+        $validator = new Validator($dataPost);
         $errors = $validator->validate([
             'username' => ['required', 'min:3'],
             'email' => ['required'],
@@ -30,40 +34,48 @@ class UserController extends Controller{
         ]);
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            $session['errors'][] = $errors;
+            $this->redirect('login');
+            exit;
         }
 
-        $user = (new User($this->getDB()))->getByUserName($_POST['username']);
+        $user = (new User($this->getDB()))->getByUserName($dataPost['username']);
 
-        if (password_verify($_POST['password'], $user->mdp) && $user->role === 'admin') {
+        if (password_verify($dataPost['password'], $user->mdp) && $user->role === 'admin') {
 
             /**
              * On stock la valeur du role dans la session
              */
-            $_SESSION['auth'] = $user->role;
-            $_SESSION['id'] = $user->id;
-            return $this->redirect('Location: /admin/posts?success=true');
+            $session['auth'] = $user->role;
+            $session['id'] = $user->id;
+            return $this->redirect('admin/posts?success=true');
 
-        } elseif (password_verify($_POST['password'], $user->mdp)) {
-            $_SESSION['auth'] = $user->role;
-            $_SESSION['id'] = $user->id;
-            return header('Location: /?success=true');   
-        } $errors['problem'][] = "il y a eu un probleme";
-        $_SESSION['errors'][] = $errors;
-        return $this->redirect('Location: /login');
+        } elseif (password_verify($dataPost['password'], $user->mdp)) {
+            $session['auth'] = $user->role;
+            $session['id'] = $user->id;
+            return $this->redirect('?success=true');
+            
+        } else {
+            $errors['problem'][] = "il y a eu un probleme";
+            $session['errors'][] = $errors;
+            return $this->redirect('login');
+        }
     }
 
     public function logout()
     {
         session_destroy();
 
-        return header('Location: /');
+        return $this->redirect('');
     }
 
     public function signin()
     {
-        $validator = new Validator($_POST);
+        $dataPost = $this->sanitize($_POST);
+
+        $session = $_SESSION;
+
+        $validator = new Validator($dataPost);
 
         $errors = $validator->validate([
             'username' => ['required', 'min:3', 'unused'],
@@ -74,42 +86,39 @@ class UserController extends Controller{
 
         $user = new User($this->getDB());
 
-        if ($user->getByUserName($_POST['username'])) {
+        if ($user->getByUserName($dataPost['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
-            $_SESSION['errors'][] = $errors;
-            header('Location: /signup');
-            exit;
-        } elseif ($user->getByEmail($_POST['email'])) {
+            $session['errors'][] = $errors;
+            $this->redirect('signup');
+        } elseif ($user->getByEmail($dataPost['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
-            $_SESSION['errors'][] = $errors;
-            header('Location: /signup');
-            exit;
+            $session['errors'][] = $errors;
+            $this->redirect('signup');
         } else {
 
             $user = new User($this->getDB());
             
             //implement createUser
             $data = [
-                'nom_utilisateur' => $_POST['username'],
-                'email'=> $_POST['email'],
-                'mdp' => $_POST['password']
+                'nom_utilisateur' => $dataPost['username'],
+                'email'=> $dataPost['email'],
+                'mdp' => $dataPost['password']
             ];
 
             $result = $user->createNewUser($data);
     
             if ($result) {
-                $_SESSION['auth'] = $user->role;
-                $_SESSION['id'] = $user->id;
-                return header('Location: /');
+                $session['auth'] = $user->role;
+                $session['id'] = $user->id;
+                return $this->redirect('');
             } else {
-                return header('Location: /signup');
+                return $this->redirect('signup');
             }
         }
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
-            header('Location: /signup');
-            exit;
+            $session['errors'][] = $errors;
+            $this->redirect('signup');
         }
 
     }

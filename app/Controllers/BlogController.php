@@ -13,7 +13,7 @@ class BlogController extends Controller {
         $post = new Article($this->getDB());
         $posts = $post->getFirstThree();
 
-        return $this->view('blog.welcome', compact('posts'));
+        return $this->view('blog.welcome', compact('posts')); // ['posts'=>$posts->getFirstThree()]
     }
 
     public function index()
@@ -39,25 +39,28 @@ class BlogController extends Controller {
     {
         $this->isConnected();
 
-        $articleId = $_POST['id_article'];
-        $postData = $_POST;
+        $dataPost = $this->sanitize($_POST);
 
-        $validator = new Validator($postData);
+        $articleId = $dataPost['id_article'];
+
+        $validator = new Validator($dataPost);
         $errors = $validator->validate([
             'contenu' => ['required', 'min:16']
         ]);
 
+        $session = $_SESSION;
+
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
-            $this->redirect('Location: /posts/' . $articleId);
+            $session['errors'][] = $errors;
+            $this->redirect('posts/' . $articleId);
         }
 
         $commentaire = new Commentaire($this->getDB());
 
-        $result = $commentaire->submitComment($postData);
+        $result = $commentaire->submitComment($dataPost);
 
         if ($result) {
-            return $this->redirect('Location: /?submit=true');
-        }  return $this->redirect('Location: /posts/'. $articleId);
+            return $this->redirect('?submit=true');
+        }  return $this->redirect('posts/'. $articleId);
     }
 }

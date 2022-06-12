@@ -13,10 +13,14 @@ abstract class Controller {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+        //setter en reference
         
         $this->database = $database;
     }
 
+    /**
+     * @SuppressWarnings("unused")
+     */
     protected function view(string $path, array $params = null)
     {
         //FIX ME
@@ -26,6 +30,8 @@ abstract class Controller {
         //this line doesn't comply with codacy guidelines but failes without
         $content = ob_get_clean();
         require VIEWS . 'layout.php';
+        //ajouter compact directement de params if not null
+        // ['posts'=>$posts->getFirstThree()] in Blogcontroller
     }
 
     protected function getDB()
@@ -51,6 +57,28 @@ abstract class Controller {
 
     public function redirect($url)
     {
-        return header($url);
+        return header('Location: /'.$url);
     }
+
+    public function sanitize($dataPost)
+    {
+        foreach($dataPost as $key=>$value){
+            switch($key) {
+                case $key === 'username':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    break;
+                case $key === 'email':
+                    $value = filter_var($value, FILTER_SANITIZE_EMAIL);
+                    break;
+                case $key === 'password':
+                    $value = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    break;
+                case $key === 'id_article':
+                    $value = filter_var($value, FILTER_VALIDATE_INT);
+                    break;
+            }
+        }
+        return $dataPost;
+    }
+
 }

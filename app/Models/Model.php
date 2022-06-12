@@ -95,7 +95,7 @@ abstract class Model{
      */
     public function queryModel(string $sql, array $param = null, bool $single = null)
     {
-        $method = is_null($param) ? 'query' : 'prepare';
+        $method = $param === null ? 'query' : 'prepare';
 
         /**
          * On check la position des mots clef Delete, Update et Create. Si en début de query on adapte la fonction pour ne pas fetch

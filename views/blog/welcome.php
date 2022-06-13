@@ -28,7 +28,7 @@
         <?php foreach($params['posts'] as $post): ?>
             <div class="card mb-3">
                 <div class="card-body">
-                    <h2><?= $post->titre ?></h2>
+                    <h2><?=  $post->titre ?></h2>
                     <small class="badge bg-secondary"><?= $post->getFormatedDate($post->date_creation) ?></small>
                     <p><?= $post->getExcerpt($post->chapo) ?></p>
                     <p>Ecrit par <?= $post->getAuthor($post->auteur_id) ?></p>

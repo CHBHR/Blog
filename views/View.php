@@ -40,9 +40,7 @@ class View
             require $file;
             //arreter la temporisation
             return ob_get_clean();
-        } else {
-            throw new \Exception("Fichier ".$file." introuvable");
-        }
+        } throw new \Exception("Fichier ".$file." introuvable");
     }
 
     private function generateFileSimple($file){

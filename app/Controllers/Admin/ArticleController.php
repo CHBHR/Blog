@@ -35,7 +35,9 @@ class ArticleController extends Controller{
 
         $article = new Article($this->getDB());
         
-        $result = $article->create($_POST);
+        $dataPost = $this->sanitize($_POST);
+
+        $result = $article->create($dataPost);
 
         if ($result) {
             return $this->redirect('admin/posts');
@@ -57,7 +59,9 @@ class ArticleController extends Controller{
 
         $article = new Article($this->getDB());
 
-        $result = $article->update($id, $_POST, true);
+        $dataPost = $this->sanitize($_POST);
+
+        $result = $article->update($id, $dataPost, true);
 
         if ($result) {
             return $this->redirect('admin/posts');

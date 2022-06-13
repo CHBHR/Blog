@@ -1,13 +1,14 @@
-footer{
+footer {
     padding: 2em;
     background-color: gray;
 }
 
-footer a{
+footer a {
     text-decoration: none;
     color: black;
 }
-footer a:hover{
+
+footer a:hover {
     text-decoration: none;
     color: blue;
 }

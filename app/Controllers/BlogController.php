@@ -11,6 +11,7 @@ class BlogController extends Controller {
     public function welcome()
     {
         $post = new Article($this->getDB());
+
         $posts = $post->getFirstThree();
 
         return $this->view('blog.welcome', compact('posts')); // ['posts'=>$posts->getFirstThree()]
@@ -48,10 +49,8 @@ class BlogController extends Controller {
             'contenu' => ['required', 'min:16']
         ]);
 
-        $session = $_SESSION;
-
         if ($errors) {
-            $session['errors'][] = $errors;
+            $_SESSION['errors'][] = $errors;
             $this->redirect('posts/' . $articleId);
         }
 

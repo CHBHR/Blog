@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Models\Article;
+use App\Controllers\Globals;
 
 class ArticleController extends Controller{
 
@@ -35,7 +36,7 @@ class ArticleController extends Controller{
 
         $article = new Article($this->getDB());
         
-        $dataPost = $this->sanitize($_POST);
+        $dataPost = (new Globals())->getPostData();
 
         $result = $article->create($dataPost);
 
@@ -59,7 +60,7 @@ class ArticleController extends Controller{
 
         $article = new Article($this->getDB());
 
-        $dataPost = $this->sanitize($_POST);
+        $dataPost = (new Globals())->getPostData();
 
         $result = $article->update($id, $dataPost, true);
 

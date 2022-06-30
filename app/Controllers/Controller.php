@@ -62,7 +62,7 @@ abstract class Controller {
 
     public function sanitize($dataPost)
     {
-        foreach($dataPost as $key=>$value){
+        foreach($dataPost as $key => $value) {
             switch($key) {
                 //user
                 case $key === 'username':

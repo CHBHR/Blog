@@ -19,7 +19,7 @@ class UserController extends Controller{
 
     public function loginPost()
     {
-        $dataPost = $this->sanitize($_POST);
+        $dataPost = (new Globals())->getPostData();
 
         /**
          * Ajouter des $rules en plus pour les différents champs
@@ -69,7 +69,7 @@ class UserController extends Controller{
 
     public function signin()
     {
-        $dataPost = $this->sanitize($_POST);
+        $dataPost = (new Globals())->getPostData();
         
         $validator = new Validator($dataPost);
 

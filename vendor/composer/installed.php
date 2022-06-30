@@ -5,18 +5,18 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f3a11f92f7793c045db8f1632529e2ddac350781',
-        'name' => '__root__',
+        'reference' => '5fb9c639441abb6b3367bdd096b4593db734be55',
+        'name' => 'chbhr/p05_blog',
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'chbhr/p05_blog' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f3a11f92f7793c045db8f1632529e2ddac350781',
+            'reference' => '5fb9c639441abb6b3367bdd096b4593db734be55',
             'dev_requirement' => false,
         ),
     ),

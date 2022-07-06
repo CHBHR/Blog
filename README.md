@@ -5,6 +5,12 @@ This project acting as an evaluation therefore participation won't be allowed un
 ## About the project
 The task is to create a professional looking blog website from scratch using almost exclusively PHP as the backend language and it must contain articles, comments, a login system as well as the possibility to download a CV.
 
+## Key features
+* Users should be able to create a personnal account and must be connected to comment an article
+* All comments must be validated by Admin to be visible under the concerned article
+* Admins should be able to access the admin interface to validate comment and CRUD Article
+* A pdf of the CV should be downloadable from the front page
+
 The current project uses:
 * PHP
 * HTML/ CSS

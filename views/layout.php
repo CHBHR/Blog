@@ -35,7 +35,7 @@
         <a class="nav-link" href="/">Accueil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/posts">Les Articles</a>
+        <a class="nav-link" href="/articles">Les Articles</a>
       </li>
 
       <?php if (isset($_SESSION['auth'])): ?>
@@ -75,7 +75,7 @@
           <ul class="list-unstyled justify-content-left">
 
             <li>
-              <a class="nav-link badge badge-info" href="/admin/posts">Admin access</a>
+              <a class="nav-link badge badge-info" href="/admin/articles">Admin access</a>
             </li>
 
           </ul>

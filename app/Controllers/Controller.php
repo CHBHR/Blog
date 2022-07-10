@@ -13,7 +13,6 @@ abstract class Controller {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        //setter en reference
         
         $this->database = $database;
     }
@@ -23,15 +22,11 @@ abstract class Controller {
      */
     protected function view(string $path, array $params = null)
     {
-        //FIX ME
         ob_start();
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
         require VIEWS . $path . '.php';
-        //this line doesn't comply with codacy guidelines but failes without
         $content = ob_get_clean();
         require VIEWS . 'layout.php';
-        //ajouter compact directement de params if not null
-        // ['posts'=>$posts->getFirstThree()] in Blogcontroller
     }
 
     protected function getDB()

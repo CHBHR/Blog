@@ -1,14 +1,14 @@
 <div class="card mt-4 mb-4">
 
     <div class="card-header">
-        <h1><?= $params['post']->titre ?></h1>
+        <h1><?= $params['article']->titre ?></h1>
     </div>
 
     <div class="card-body">
-        <h5 class="card-title"><?= $params['post']->chapo ?></h5>
-        <p class="card-text"><?= $params['post']->contenu ?></p>
-        <small><?= $params['post']->getAuthor($params['post']->auteur_id) ?></small>
-        <small><?= $params['post']->getFormatedDate($params['post']->date_creation) ?></small>
+        <h5 class="card-title"><?= $params['article']->chapo ?></h5>
+        <p class="card-text"><?= $params['article']->contenu ?></p>
+        <small><?= $params['article']->getAuthor($params['article']->id_auteur) ?></small>
+        <small><?= $params['article']->getFormatedDate($params['article']->date_creation) ?></small>
     </div>
     
 </div>
@@ -71,7 +71,7 @@
     <?php if (isset($_SESSION['auth'])): ?>
     <div class="form-commentaire">
 
-        <form action="<?= "/posts/submitComment" ?>" method="POST">
+        <form action="<?= "/articles/submitComment" ?>" method="POST">
             <div class="form-group">
                 <label for="titre">Commentaire</label>
                 <textarea name="contenu" id="contenu" rows="6" class="form-control"></textarea>
@@ -80,7 +80,7 @@
                 <input type="hidden" id="id_auteur" name="id_auteur" value="<?= $_SESSION['id'] ?>">
             </div>
             <div class="form-group">
-                <input type="hidden" id="id_article" name="id_article" value="<?= $params['post']->id ?>">
+                <input type="hidden" id="id_article" name="id_article" value="<?= $params['article']->id ?>">
             </div>
 
             <button type="submit" class="btn btn-primary mt-4">Soumettre mon commentaire pour validation</button>

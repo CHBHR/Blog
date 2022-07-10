@@ -28,8 +28,8 @@ class CommentaireController extends Controller{
         $result = $commentaire->validate($commentaireId);
 
         if ($result) {
-            return $this->redirect('admin/posts');
-        } return $this->redirect('admin/posts');
+            return $this->redirect('admin/articles');
+        } return $this->redirect('admin/articles');
     }
 
     public function deleteCommentaire($id)
@@ -40,7 +40,7 @@ class CommentaireController extends Controller{
         $result = $commentaire->destroy($id);
 
         if ($result) {
-            return $this->redirect('admin/posts');
+            return $this->redirect('admin/articles');
         }
     }
 

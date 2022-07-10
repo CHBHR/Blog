@@ -39,9 +39,9 @@
                     Status : <?= $com->status ?>
                 </p>
                 <?php if($com->status != 'validated'): ?>
-                    <a href="/admin/posts/comment/validate/<?= $com->id?>" class="btn btn-success">Valider</a>
+                    <a href="/admin/articles/comment/validate/<?= $com->id?>" class="btn btn-success">Valider</a>
                 <?php endif ?>
-                <form action="/admin/posts/comment/delete/<?= $com->id ?>" method="POST" class="d-inline">
+                <form action="/admin/articles/comment/delete/<?= $com->id ?>" method="POST" class="d-inline">
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </form>
             </div>
@@ -52,4 +52,4 @@
 
 </div>
 
-<a href="/admin/posts/" class="btn btn-secondary mt-3">Revenir en arrière</a>
+<a href="/admin/articles/" class="btn btn-secondary mt-3">Revenir en arrière</a>

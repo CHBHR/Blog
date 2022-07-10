@@ -30,22 +30,11 @@ abstract class Model{
         return $this->queryModel("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
     }
 
-    public function create(array $data)
+    public function createArticle($param)
     {
-        $firstParethesis = "";
-        $secondParenthesis = "";
-        $counter = 1;
-
-        foreach ($data as $key => $value) {
-            $comma = $counter === count($data) ? " " : ", ";
-            $firstParethesis .= "{$key}{$comma}";
-            $secondParenthesis .= ":{$key}{$comma}";
-            $counter++;
-        }
-
-        return($this->queryModel(
-            "INSERT INTO {$this->table} ($firstParethesis) 
-            VALUES($secondParenthesis)", $data));
+        $stmt = $this->database::getPDO()->prepare("INSERT INTO article (titre, chapo, contenu, id_auteur) VALUES (?, ?, ?,?)");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($this),[$this->database]);
+        return $stmt->execute($param);
     }
 
     public function createUser($param)

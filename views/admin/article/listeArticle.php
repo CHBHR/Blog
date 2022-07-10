@@ -4,7 +4,7 @@
     <div class="alert alert-success">Vous êtes connecté!</div>
 <?php endif ?>
 
-<a href="/admin/posts/create" class="btn btn-success my-3">Créer un nouvel Article</a>
+<a href="/admin/articles/create" class="btn btn-success my-3">Créer un nouvel Article</a>
 
 <table class="table">
     <thead>
@@ -20,23 +20,23 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($params['articles'] as $post): ?>
+        <?php foreach($params['articles'] as $article): ?>
 
             <tr>
-                <th scope="row"><?= $post->id ?></th>
-                <td><?= $post->titre ?></td>
-                <td><?= $post->chapo ?></td>
-                <!-- <td><?= $post->contenu ?></td> -->
-                <td><?= $post->getFormatedDate($post->date_creation) ?></td>
-                <td><?= $post->getFormatedDate($post->date_mise_a_jour) ?></td>
-                <td><?= $post->getAuthor($post->auteur_id) ?></td>
-                <td><?= $post->getPendingComment($post->id) ?></td>
+                <th scope="row"><?= $article->id ?></th>
+                <td><?= $article->titre ?></td>
+                <td><?= $article->chapo ?></td>
+                <!-- <td><?= $article->contenu ?></td> -->
+                <td><?= $article->getFormatedDate($article->date_creation) ?></td>
+                <td><?= $article->getFormatedDate($article->date_mise_a_jour) ?></td>
+                <td><?= $article->getAuthor($article->id_auteur) ?></td>
+                <td><?= $article->getPendingComment($article->id) ?></td>
                 <td>
-                    <a href="/admin/posts/edit/<?= $post->id ?>" class="btn btn-warning">Modifier</a>
-                    <form action="/admin/posts/delete/<?= $post->id ?>" method="POST" class="d-inline">
+                    <a href="/admin/articles/edit/<?= $article->id ?>" class="btn btn-warning">Modifier</a>
+                    <form action="/admin/articles/delete/<?= $article->id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
-                    <a href="/admin/posts/comment/<?= $post->id ?>" class="btn btn-secondary">Commentaires</a>
+                    <a href="/admin/articles/comment/<?= $article->id ?>" class="btn btn-secondary">Commentaires</a>
                 </td>
             </tr>
         

@@ -14,12 +14,12 @@ $router = new Router($_GET['url']);
  * Les routes Article
  */
 $router->get('/', 'App\Controllers\BlogController@welcome');
-$router->get('/posts', 'App\Controllers\BlogController@index');
-$router->get('/posts/:id', 'App\Controllers\BlogController@show');
+$router->get('/articles', 'App\Controllers\BlogController@index');
+$router->get('/articles/:id', 'App\Controllers\BlogController@show');
 /**
  * Les routes commentaire
  */
-$router->post('/posts/submitComment', 'App\Controllers\BlogController@submitComment');
+$router->post('/articles/submitComment', 'App\Controllers\BlogController@submitComment');
 
 /**
  * Les routes utilisateur
@@ -33,15 +33,15 @@ $router->post('/signin', 'App\Controllers\UserController@signin');
 /**
  * Les routes admin
  */
-$router->get('/admin/posts', 'App\Controllers\Admin\ArticleController@listeArticle');
-$router->get('/admin/posts/create', 'App\Controllers\Admin\ArticleController@create');
-$router->post('/admin/posts/create', 'App\Controllers\Admin\ArticleController@createArticle');
-$router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\ArticleController@destroy');
-$router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@edit');
-$router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\ArticleController@update');
-$router->get('/admin/posts/comment/:id', 'App\Controllers\Admin\CommentaireController@listeCommentaire');
-$router->get('/admin/posts/comment/validate/:id', 'App\Controllers\Admin\CommentaireController@validerCommentaire');
-$router->post('/admin/posts/comment/delete/:id', 'App\Controllers\Admin\CommentaireController@deleteCommentaire');
+$router->get('/admin/articles', 'App\Controllers\Admin\ArticleController@listeArticle');
+$router->get('/admin/articles/create', 'App\Controllers\Admin\ArticleController@create');
+$router->post('/admin/articles/create', 'App\Controllers\Admin\ArticleController@createArticle');
+$router->post('/admin/articles/delete/:id', 'App\Controllers\Admin\ArticleController@destroy');
+$router->get('/admin/articles/edit/:id', 'App\Controllers\Admin\ArticleController@edit');
+$router->post('/admin/articles/edit/:id', 'App\Controllers\Admin\ArticleController@update');
+$router->get('/admin/articles/comment/:id', 'App\Controllers\Admin\CommentaireController@listeCommentaire');
+$router->get('/admin/articles/comment/validate/:id', 'App\Controllers\Admin\CommentaireController@validerCommentaire');
+$router->post('/admin/articles/comment/delete/:id', 'App\Controllers\Admin\CommentaireController@deleteCommentaire');
 
 /**
  * Le téléchargement du pdf

@@ -46,7 +46,7 @@ class UserController extends Controller{
              */
             $_SESSION['auth'] = $user->role;
             $_SESSION['id'] = $user->id;
-            return $this->redirect('admin/posts?success=true');
+            return $this->redirect('admin/articles?success=true');
 
         } elseif (password_verify($dataPost['password'], $user->mdp)) {
             $_SESSION['auth'] = $user->role;

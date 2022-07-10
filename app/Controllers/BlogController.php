@@ -10,30 +10,30 @@ class BlogController extends Controller {
 
     public function welcome()
     {
-        $post = new Article($this->getDB());
+        $article = new Article($this->getDB());
 
-        $posts = $post->getFirstThree();
+        $articles = $article->getFirstThree();
 
-        return $this->view('blog.welcome', compact('posts')); // ['posts'=>$posts->getFirstThree()]
+        return $this->view('blog.welcome', compact('articles')); 
     }
 
     public function index()
     {
-        $post = new Article($this->getDB());
-        $posts = $post->getAll();
+        $article = new Article($this->getDB());
+        $articles = $article->getAll();
 
-        return $this->view('blog.index', compact('posts'));
+        return $this->view('blog.index', compact('articles'));
     }
 
     public function show(int $articleId)
     {
-        $post = new Article($this->getDB());
-        $post = $post->findById($articleId);
+        $article = new Article($this->getDB());
+        $article = $article->findById($articleId);
 
         $comment = new Commentaire($this->getDB());
         $comment = $comment->getCommentsFromArticle($articleId);
 
-        return $this->view('blog.show', compact('post','comment'));
+        return $this->view('blog.show', compact('article','comment'));
     }
 
     public function submitComment()
@@ -51,7 +51,7 @@ class BlogController extends Controller {
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            $this->redirect('posts/' . $articleId);
+            $this->redirect('articles/' . $articleId);
         }
 
         $commentaire = new Commentaire($this->getDB());
@@ -60,6 +60,6 @@ class BlogController extends Controller {
 
         if ($result) {
             return $this->redirect('?submit=true');
-        }  return $this->redirect('posts/'. $articleId);
+        }  return $this->redirect('articles/'. $articleId);
     }
 }

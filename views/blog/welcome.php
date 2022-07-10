@@ -32,20 +32,20 @@
     </h2>
     
     <div class="p-2 d-lg-flex justify-content-around">
-        <?php foreach($params['posts'] as $post): ?>
+        <?php foreach($params['articles'] as $post): ?>
             <div class="card mb-3 col-lg-4 text-lg-center">
                 <div class="card-body">
                     <h2><?= $post->titre ?></h2>
                     <small class="badge bg-secondary"><?= $post->getFormatedDate($post->date_creation) ?></small>
                     <p><?= $post->getExcerpt($post->chapo) ?></p>
-                    <p>Ecrit par <?= $post->getAuthor($post->auteur_id) ?></p>
-                    <a href="/posts/<?= $post->id ?>" class="btn btn-primary">Lire plus</a>
+                    <p>Ecrit par <?= $post->getAuthor($post->id_auteur) ?></p>
+                    <a href="/articles/<?= $post->id ?>" class="btn btn-primary">Lire plus</a>
                 </div>
             </div>
         <?php endforeach ?>
     </div>
 
-    <a href="/posts" class="btn btn-primary mt-3">Voir plus</a>
+    <a href="/articles" class="btn btn-primary mt-3">Voir plus</a>
 
 </div>
 
@@ -151,27 +151,27 @@
     <div class="col-6 mx-auto d-flex justify-content-around">
 
         <!-- Facebook -->
-        <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"
+        <a class="btn btn-primary" style="background-color: #3b5998;" href="https://www.facebook.com/christopher.rey.9/" role="button"
         ><i class="fab fa-facebook-f"></i
         ></a>
 
         <!-- Twitter -->
-        <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"
+        <a class="btn btn-primary" style="background-color: #55acee;" href="https://twitter.com/ChrisHBHRey" role="button"
         ><i class="fab fa-twitter"></i
         ></a>
 
         <!-- Instagram -->
-        <a class="btn btn-primary" style="background-color: #ac2bac;" href="#!" role="button"
+        <a class="btn btn-primary" style="background-color: #ac2bac;" href="https://www.instagram.com/chbhrey/" role="button"
         ><i class="fab fa-instagram"></i
         ></a>
 
         <!-- Linkedin -->
-        <a class="btn btn-primary" style="background-color: #0082ca;" href="#!" role="button"
+        <a class="btn btn-primary" style="background-color: #0082ca;" href="https://www.linkedin.com/in/christopher-rey-chbhr/" role="button"
         ><i class="fab fa-linkedin-in"></i
         ></a>
 
         <!-- Github -->
-        <a class="btn btn-primary" style="background-color: #333333;" href="#!" role="button"
+        <a class="btn btn-primary" style="background-color: #333333;" href="https://github.com/CHBHR" role="button"
         ><i class="fab fa-github"></i
         ></a>
 

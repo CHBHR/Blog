@@ -41,4 +41,16 @@ class Article extends Model{
         $row = $stmt->rowCount();
         return ($row);
     }
+
+    public function create($data)
+    {
+        $param = [
+            $data['titre'],
+            $data['chapo'],
+            $data['contenu'],
+            $data['id_auteur']
+        ];
+
+        return $this->createArticle($param);
+    }
 }

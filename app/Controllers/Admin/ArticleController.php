@@ -41,8 +41,8 @@ class ArticleController extends Controller{
         $result = $article->create($dataPost);
 
         if ($result) {
-            return $this->redirect('admin/posts');
-        } return $this->redirect('admin/posts');
+            return $this->redirect('admin/articles');
+        } return $this->redirect('admin/articles');
     }
 
     public function edit(int $id)
@@ -65,7 +65,7 @@ class ArticleController extends Controller{
         $result = $article->update($id, $dataPost, true);
 
         if ($result) {
-            return $this->redirect('admin/posts');
+            return $this->redirect('admin/articles');
         }
     }
 
@@ -77,7 +77,7 @@ class ArticleController extends Controller{
         $result = $article->destroy($articleId);
 
         if ($result) {
-            return $this->redirect('admin/posts');
+            return $this->redirect('admin/articles');
         }
     }
 }

@@ -10,7 +10,7 @@ class Commentaire extends Model{
     public function submitComment($data)
     {
         $param = [
-            $data['contenu'],// = urlencode($data['contenu']), //urldecode 
+            $data[urlencode($data['contenu'])],
             $data['id_auteur'],
             $data['id_article']
         ];

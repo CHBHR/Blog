@@ -49,7 +49,6 @@
 
 </div>
 
-<!-- x implement form to add comment if user is logged in, if not logged, displays message with button to login -->
 <div class="block-form-commentaire">
 
     <h3>Ajouter un commentaire</h3>

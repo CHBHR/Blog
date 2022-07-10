@@ -37,6 +37,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/articles">Les Articles</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">Me Contacter</a>
+      </li>
 
       <?php if (isset($_SESSION['auth'])): ?>
       <li class="nav-item ml-auto">

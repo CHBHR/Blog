@@ -2,6 +2,8 @@
     <div class="alert alert-success">Vous êtes connecté!</div>
 <?php elseif(isset($_GET['submit'])): ?>
     <div class="alert alert-success">Votre commentaire a été envoyer pour validation</div>
+<?php elseif(isset($_GET['mailSent'])): ?>
+    <div class="alert alert-success">Votre formulaire de contact a bien été envoyé</div>
 <?php endif ?>
 
 <h1 class=" mt-4"> Un blog pour me présenter </h1>
@@ -140,7 +142,7 @@
 
 </div>
 
-<div class="container mt-4  text-center">
+<div class="container mt-4 text-center bg-light">
 
     <h3>Socials</h3>
 
@@ -177,27 +179,4 @@
 
     </div>
 
-</div>
-
-<div class="container mt-4 bg-light col-lg-6 ">
-    <h3>Me contacter</h3>
-    <p>
-        Vous voulez me contacter, me poser une question ou en savoir plus sur mon parcours? Vous pouvez remplir ce formulaire et je m'éforcerai de vous répondre le plus rapidement possible.
-    </p>
-    <form action="/contact" method="POST">
-        <div class="form-group">
-            <label for="name">Nom / Prénom</label>
-            <input type="text" class="form-control" name="name" id="name">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email">
-        </div>
-        <div class="form-group">
-            <label for="menu">Votre message</label>
-            <textarea name="menu" id="menu" rows="8" class="form-control"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-2">Envoyer</button>
-    </form>
 </div>

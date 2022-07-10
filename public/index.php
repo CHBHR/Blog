@@ -48,6 +48,12 @@ $router->post('/admin/articles/comment/delete/:id', 'App\Controllers\Admin\Comme
  */
 $router->get('/downloadpdf', 'App\Controllers\DownloadController@downloadpdf');
 
+/**
+ * Le formulaire de contact 
+ */
+$router->get('/contact', 'App\Controllers\ContactController@showContactForm');
+$router->post('/contact', 'App\Controllers\ContactController@checkContactForm');
+
 try {
     $router->run();
 } catch (NotFoundException $e) {

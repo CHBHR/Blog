@@ -26,7 +26,6 @@
                 <th scope="row"><?= $article->id ?></th>
                 <td><?= $article->titre ?></td>
                 <td><?= $article->chapo ?></td>
-                <!-- <td><?= $article->contenu ?></td> -->
                 <td><?= $article->getFormatedDate($article->date_creation) ?></td>
                 <td><?= $article->getFormatedDate($article->date_mise_a_jour) ?></td>
                 <td><?= $article->getAuthor($article->id_auteur) ?></td>

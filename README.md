@@ -40,3 +40,6 @@ Christopher Rey ( CHBHR )
 
 ## Acknowledgements
 * This readme version is a simplified version of a github repository by Othneildrew
+
+## Codacy badge
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dd39fb1a32454302bb603f3bc622070f)](https://www.codacy.com/gh/CHBHR/Blog/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CHBHR/Blog&amp;utm_campaign=Badge_Grade)

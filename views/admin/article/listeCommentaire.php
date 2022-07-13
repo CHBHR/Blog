@@ -9,7 +9,7 @@
     <div class="card-body">
         <h5 class="card-title"><?= $params['article']->chapo ?></h5>
         <p class="card-text"><?= $params['article']->contenu ?></p>
-        <p><?= $params['article']->getAuthor($params['article']->auteur_id) ?></p>
+        <p><?= $params['article']->getAuthor($params['article']->id_auteur) ?></p>
         <p><?= $params['article']->getFormatedDate($params['article']->date_creation) ?></p>
     </div>
     

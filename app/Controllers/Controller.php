@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use Database\DBConnection;
+use App\Controllers\Globals;
 
 abstract class Controller {
 
     protected $database;
+    protected $globals;
 
     public function __construct(DBConnection $database)
     {
@@ -36,14 +38,20 @@ abstract class Controller {
 
     protected function isAdmin()
     {
-        if (isset($_SESSION['auth']) && $_SESSION['auth'] === 'admin') {
+        $auth = 'auth';
+        $this->globals = new Globals;
+        $session = $this->globals->getSessionData($auth);
+        if (isset($session) && $session === 'admin') {
             return true;
         } return  $this->redirect('login');
     }
 
     protected function isConnected()
     {
-        if (isset($_SESSION['auth'])) {
+        $this->globals = new Globals;
+        $session = $this->globals->getSessionData();
+
+        if (isset($session)) {
             return true;
         } else {
            return  $this->redirect('login');

@@ -53,7 +53,9 @@
 
     <h3>Ajouter un commentaire</h3>
 
-    <?php if (isset($_SESSION['errors'])): ?>
+    <?php
+
+        if (isset($_SESSION['errors'])): ?>
         <?php foreach($_SESSION['errors'] as $errorsArray): ?>
             <?php foreach($errorsArray as $errors): ?>
                 <div class="alert alert-danger">

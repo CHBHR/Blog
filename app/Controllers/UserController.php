@@ -69,9 +69,12 @@ class UserController extends Controller{
 
     public function signin()
     {
-        $dataPost = (new Globals())->getPostData();
+        $globals = new Globals;
+        $dataPost = $globals->getPostData();
         
         $validator = new Validator($dataPost);
+
+        $session = new Globals;
 
         $errors = $validator->validate([
             'username' => ['required', 'min:3', 'unused'],
@@ -81,14 +84,15 @@ class UserController extends Controller{
         ]);
 
         $user = new User($this->getDB());
+        $session = $globals->getSessionData();
 
         if ($user->getByUserName($dataPost['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
         } elseif ($user->getByEmail($dataPost['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
         } else {
 
@@ -104,16 +108,16 @@ class UserController extends Controller{
             $result = $user->createNewUser($data);
     
             if ($result) {
-                $_SESSION['auth'] = $user->role;
-                $_SESSION['id'] = $user->id;
-                return $this->redirect('');
+                $session['auth'] = $user->role;
+                $session['id'] = $user->id;
+                return $this->redirect('?signIn=true');
             } else {
                 return $this->redirect('signup');
             }
         }
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
         }
 

@@ -40,7 +40,8 @@ class BlogController extends Controller {
     {
         $this->isConnected();
 
-        $dataPost = (new Globals())->getPostData();
+        $globals = new Globals;
+        $dataPost = $globals->getPostData();
 
         $articleId = $dataPost['id_article'];
 
@@ -49,8 +50,10 @@ class BlogController extends Controller {
             'contenu' => ['required', 'min:16']
         ]);
 
+        $session = $this->globals->getSessionData();
+
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('articles/' . $articleId);
         }
 

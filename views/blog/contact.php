@@ -1,4 +1,5 @@
-<?php if (isset($_SESSION['errors'])): ?>
+<?php
+    if (isset($_SESSION['errors'])): ?>
 
 <?php foreach($_SESSION['errors'] as $errorsArray): ?>
     <?php foreach($errorsArray as $errors): ?>

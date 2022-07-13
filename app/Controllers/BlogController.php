@@ -40,7 +40,8 @@ class BlogController extends Controller {
     {
         $this->isConnected();
 
-        $dataPost = (new Globals())->getPostData();
+        $globals = new Globals;
+        $dataPost = $globals->getPostData();
 
         $articleId = $dataPost['id_article'];
 

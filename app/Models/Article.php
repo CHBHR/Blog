@@ -48,9 +48,9 @@ class Article extends Model{
             $data['titre'],
             $data['chapo'],
             $data['contenu'],
-            $data['id_auteur']
+            $data['id_auteur'],
         ];
-
+        
         return $this->createArticle($param);
     }
 }

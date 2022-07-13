@@ -48,6 +48,9 @@ abstract class Controller {
 
     protected function isConnected()
     {
+        $this->globals = new Globals;
+        $session = $this->globals->getSessionData();
+
         if (isset($session)) {
             return true;
         } else {

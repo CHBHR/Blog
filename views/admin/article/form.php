@@ -15,6 +15,9 @@
         <label for="contenu">Contenu de l'article</label>
         <textarea name="contenu" id="contenu" rows="8" class="form-control"><?= $params['article']->contenu ?? '' ?></textarea>
     </div>
+    <div class="form-group d-none">
+        <input name="id_auteur" id="id_auteur" class="form-control" value="<?= $_SESSION['id'] ?>">
+    </div>
 
     <button type="submit" class="btn btn-primary"><?= isset($params['article']) ? 'Enregistrer les modifications' : 'Enregistrer mon article' ?> </button>
 </form>

@@ -4,6 +4,8 @@
     <div class="alert alert-success">Votre commentaire a été envoyer pour validation</div>
 <?php elseif(isset($_GET['mailSent'])): ?>
     <div class="alert alert-success">Votre formulaire de contact a bien été envoyé</div>
+<?php elseif(isset($_GET['signIn'])): ?>
+    <div class="alert alert-success">Votre inscription s'est bien passé, veuillez vous connecter</div>
 <?php endif ?>
 
 <h1 class=" mt-4"> Un blog pour me présenter </h1>

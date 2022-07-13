@@ -69,7 +69,8 @@ class UserController extends Controller{
 
     public function signin()
     {
-        $dataPost = (new Globals())->getPostData();
+        $globals = new Globals;
+        $dataPost = $globals->getPostData();
         
         $validator = new Validator($dataPost);
 
@@ -83,7 +84,7 @@ class UserController extends Controller{
         ]);
 
         $user = new User($this->getDB());
-        $session = $this->session->getSessionData();
+        $session = $globals->getSessionData();
 
         if ($user->getByUserName($dataPost['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
@@ -109,7 +110,7 @@ class UserController extends Controller{
             if ($result) {
                 $session['auth'] = $user->role;
                 $session['id'] = $user->id;
-                return $this->redirect('');
+                return $this->redirect('?signIn=true');
             } else {
                 return $this->redirect('signup');
             }

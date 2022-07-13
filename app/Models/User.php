@@ -26,6 +26,7 @@ class User extends Model{
                 PASSWORD_DEFAULT)
             ];
         $this->createUser($param);
+        return true;
     }
 
 }

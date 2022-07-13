@@ -73,6 +73,8 @@ class UserController extends Controller{
         
         $validator = new Validator($dataPost);
 
+        $session = new Globals;
+
         $errors = $validator->validate([
             'username' => ['required', 'min:3', 'unused'],
             'email' => ['required', 'unused'],
@@ -81,14 +83,15 @@ class UserController extends Controller{
         ]);
 
         $user = new User($this->getDB());
+        $session = $this->session->getSessionData();
 
         if ($user->getByUserName($dataPost['username'])) {
             $errors['username'][] = "Ce nom d'utilisateur est déjà pris";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
         } elseif ($user->getByEmail($dataPost['email'])) {
             $errors['email'][] = "Cet email est déjà utilisé";
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
         } else {
 
@@ -104,8 +107,8 @@ class UserController extends Controller{
             $result = $user->createNewUser($data);
     
             if ($result) {
-                $_SESSION['auth'] = $user->role;
-                $_SESSION['id'] = $user->id;
+                $session['auth'] = $user->role;
+                $session['id'] = $user->id;
                 return $this->redirect('');
             } else {
                 return $this->redirect('signup');
@@ -113,7 +116,7 @@ class UserController extends Controller{
         }
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('signup');
         }
 

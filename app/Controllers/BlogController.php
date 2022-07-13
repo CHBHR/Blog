@@ -49,8 +49,10 @@ class BlogController extends Controller {
             'contenu' => ['required', 'min:16']
         ]);
 
+        $session = $this->globals->getSessionData();
+
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
+            $session['errors'][] = $errors;
             $this->redirect('articles/' . $articleId);
         }
 

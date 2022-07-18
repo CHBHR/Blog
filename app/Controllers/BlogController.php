@@ -14,7 +14,20 @@ class BlogController extends Controller {
 
         $articles = $article->getFirstThree();
 
-        return $this->view('blog.welcome', compact('articles')); 
+        $getData = (new Globals())->getGetData();
+
+        if(isset($getData['success']))
+            $message = "Vous êtes connecté!";
+        elseif(isset($getData['submit']))
+            $message = "Votre commentaire a été envoyer pour validation";
+        elseif(isset($getData['mailSent']))
+            $message = "Votre formulaire de contact a bien été envoyé";
+        elseif(isset($getData['signIn']))
+            $message = "Votre inscription s'est bien passé, veuillez vous connecter";
+        else
+            $message = "";
+
+        return $this->view('blog.welcome', ['articles' => $articles, 'message' => $message]);
     }
 
     public function index()
@@ -22,7 +35,7 @@ class BlogController extends Controller {
         $article = new Article($this->getDB());
         $articles = $article->getAll();
 
-        return $this->view('blog.index', compact('articles'));
+        return $this->view('blog.index', ['articles' => $articles]);
     }
 
     public function show(int $articleId)
@@ -31,9 +44,9 @@ class BlogController extends Controller {
         $article = $article->findById($articleId);
 
         $comment = new Commentaire($this->getDB());
-        $comment = $comment->getCommentsFromArticle($articleId);
+        $commentaires = $comment->getCommentsFromArticle($articleId);
 
-        return $this->view('blog.show', compact('article','comment'));
+        return $this->view('blog.show', ['article' => $article,'commentaires' => $commentaires]);
     }
 
     public function submitComment()

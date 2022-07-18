@@ -81,6 +81,12 @@ class Globals extends Controller
             return $this->_SESSION;
         }
     }
+
+    public function putSessionData($key, $value)
+    {
+        $this->_SESSION[$key][]= $value;
+    }
+
     /**
      * Function to define superglobals for use locally.
      * We do not automatically unset the superglobals after

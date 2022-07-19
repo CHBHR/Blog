@@ -1,7 +1,7 @@
 <h1>Administration des articles</h1>
 
-<?php if(isset($_GET['success'])): ?>
-    <div class="alert alert-success">Vous êtes connecté!</div>
+<?php if(!empty($params['message'])): ?>
+    <div class="alert alert-success"><?= $params['message'] ?></div>
 <?php endif ?>
 
 <a href="/admin/articles/create" class="btn btn-success my-3">Créer un nouvel Article</a>

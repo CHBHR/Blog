@@ -23,13 +23,6 @@ class COntactController extends Controller{
             'message' => ['required', 'min:20'],
         ]);
 
-        $session = $this->globals->getSessionData();
-
-        if ($errors) {
-            $session['errors'][] = $errors;
-            $this->redirect('contact');
-        }
-
         $result = $this->sendContactMail($dataPost);
 
         if ($result) {

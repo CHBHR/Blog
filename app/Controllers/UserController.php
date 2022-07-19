@@ -19,7 +19,8 @@ class UserController extends Controller{
 
     public function loginPost()
     {
-        $dataPost = (new Globals())->getPostData();
+        $globals = new Globals;
+        $dataPost = $globals->getPostData();
 
         /**
          * Ajouter des $rules en plus pour les différents champs
@@ -32,9 +33,10 @@ class UserController extends Controller{
         ]);
 
         if ($errors) {
-            $_SESSION['errors'][] = $errors;
-            $this->redirect('login');
-            exit;
+            $globals->putSessionData('errors',$errors);
+            $session = $globals->getSessionData('errors');
+
+            return $this->view('auth.login', ['session' => $session]);
         }
 
         $user = (new User($this->getDB()))->getByUserName($dataPost['username']);
@@ -44,6 +46,8 @@ class UserController extends Controller{
             /**
              * On stock la valeur du role dans la session
              */
+            //$globals->putSessionData('auth',$user->role);
+            //$globals->putSessionData('id',$user->id);
             $_SESSION['auth'] = $user->role;
             $_SESSION['id'] = $user->id;
             return $this->redirect('admin/articles?success=true');
@@ -98,7 +102,6 @@ class UserController extends Controller{
 
             $user = new User($this->getDB());
             
-            //implement createUser
             $data = [
                 'nom_utilisateur' => $dataPost['username'],
                 'email'=> $dataPost['email'],
@@ -108,8 +111,8 @@ class UserController extends Controller{
             $result = $user->createNewUser($data);
     
             if ($result) {
-                $session['auth'] = $user->role;
-                $session['id'] = $user->id;
+                $globals->putSessionData('auth',$user->role);
+                $globals->putSessionData('id',$user->id);
                 return $this->redirect('?signIn=true');
             } else {
                 return $this->redirect('signup');

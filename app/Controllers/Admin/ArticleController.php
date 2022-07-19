@@ -11,10 +11,16 @@ class ArticleController extends Controller{
     public function listeArticle()
     {
         $this->isAdmin();
+
+        $getData = (new Globals())->getGetData();
+
+        if(isset($getData['success']))
+            $message = "Vous êtes connecté!";
+        $message = '';
         
         $articles = (new Article($this->getDB()))->getAll();
 
-        return $this->view('admin.article.listeArticle', compact('articles'));
+        return $this->view('admin.article.listeArticle', ['articles' => $articles, 'message' => $message]);
     }
 
     /**
@@ -51,7 +57,7 @@ class ArticleController extends Controller{
 
         $article = (new Article($this->getDB()))->findById($id);
 
-        return $this->view('admin.article.form', compact('article'));
+        return $this->view('admin.article.form', ['article' => $article]);
     }
 
     public function update(int $id)

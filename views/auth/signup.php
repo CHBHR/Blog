@@ -1,7 +1,7 @@
-<?php
-    if (isset($_SESSION['errors'])): ?>
-
-<?php foreach($_SESSION['errors'] as $errorsArray): ?>
+<?php    
+    if (!empty($params['session'])): ?>
+    
+<?php foreach($params['session'] as $errorsArray): ?>
     <?php foreach($errorsArray as $errors): ?>
         <div class="alert alert-danger">
             <?php foreach($errors as $error): ?>

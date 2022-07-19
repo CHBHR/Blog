@@ -1,7 +1,7 @@
-<?php
-    if (isset($_SESSION['errors'])): ?>
-
-<?php foreach($_SESSION['errors'] as $errorsArray): ?>
+<?php    
+    if (!empty($params['session'])): ?>
+    
+<?php foreach($params['session'] as $errorsArray): ?>
     <?php foreach($errorsArray as $errors): ?>
         <div class="alert alert-danger">
             <?php foreach($errors as $error): ?>
@@ -30,7 +30,7 @@
         <input type="password" class="form-control" name="password" id="password">
     </div>
 
-    <button type="submit" class="btn btn-primary">Se connecter</button>
+    <button type="submit" class="btn btn-primary mt-2">Se connecter</button>
 </form>
 
 <div class="container mt-3">

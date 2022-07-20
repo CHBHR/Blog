@@ -17,7 +17,7 @@
 
     <h3>Commentaires</h3>
 
-    <?php if (!$params['comment']): ?>
+    <?php if (!$params['commentaires']): ?>
 
     <div class="card bg-light">
         <div class="card-body">
@@ -25,9 +25,9 @@
         </div>
     </div>
 
-    <?php elseif($params['comment']): ?>
+    <?php elseif($params['commentaires']): ?>
         <?php $nb = 0; ?>
-        <?php foreach($params['comment'] as $com): ?>
+        <?php foreach($params['commentaires'] as $com): ?>
             <?php if($com->status === 'validated'): ?>
                 <?php $nb++ ;?>
                 <div class="card bg-light mb-3" >
